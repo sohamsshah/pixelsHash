@@ -3,6 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from '../Image/Image'
 import Input from '../Input/Input'
 import Loader from '../Loader/Loader'
+import Alert from "../Alert/Alert"
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -45,12 +46,12 @@ const Images = ({ data }) => {
 				hasMore={hasMore}
 				scrollThreshold={0.99}
 				loader={<Loader numberOfCards={6} />}
-				endMessage={<h4>Nothing more to show</h4>}
+				endMessage={<Alert color="white" bgColor="pink-500"> Wohoo! You have reached the end! 🎉</Alert>}
 			>
 				<div className="flex m-3 justify-center">
 					<div className="flex flex-wrap gap-2 justify-center">
 						{images.map((image, index) => (
-							<Image image={image} index={index} images={images} />
+							<Image image={image} index={index} key={index} images={images} />
 						))}
 					</div>
 				</div>
