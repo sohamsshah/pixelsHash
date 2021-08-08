@@ -3,6 +3,9 @@ import Location from "./../Location/Location"
 import Tags from "./../Tags/Tags"
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import SocialLinks from '../SocialLinks/SocialLinks'
+import { MdiCalendarMonth } from '../../assets/CalendarIcon'
+import moment from 'moment'
+
 
 
 const Modal = ({image, closeModal, handlePrevModalImage, handleNextModalImage}) => {
@@ -55,8 +58,8 @@ const Modal = ({image, closeModal, handlePrevModalImage, handleNextModalImage}) 
                       </span>
                       {image.user.location !== null ? <Location location={image.user.location} /> : ""} 
                     <div>
-                      <span>
-                        Clicked at {image.created_at}
+                      <span className="flex items-center">
+                        <MdiCalendarMonth className="text-lg mr-1" /> Published on {moment(image.created_at).format('MMM Do YYYY')}
                       </span>
                     </div>
                     {image.tags.length !== 0 ? <Tags tags={image.tags} /> : ""} 
