@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Modal from "./../Modal/Modal"
-import {MdiDownload} from "./../../assets/DownloadIcon"
+import Modal from './../Modal/Modal'
+import { MdiDownload } from './../../assets/DownloadIcon'
 
 const Image = ({ image, images, index }) => {
 	const [currModalImageIndex, setCurrModalImageIndex] = useState(index)
@@ -21,11 +21,21 @@ const Image = ({ image, images, index }) => {
 	return (
 		<>
 			{showModal ? (
-				<Modal image={modalImage} handlePrevModalImage={handlePrevModalImage} handleNextModalImage={handleNextModalImage} closeModal={() => setShowModal(false)}/>
+				<Modal
+					image={modalImage}
+					handlePrevModalImage={handlePrevModalImage}
+					handleNextModalImage={handleNextModalImage}
+					closeModal={() => setShowModal(false)}
+				/>
 			) : null}
 			<div className="card">
 				<div onClick={() => setShowModal(true)} className="card-zoom cursor-zoom-in">
-					<img alt={image.alt_description} className="card-zoom-image" key={image.user.id} src={image.urls.raw} />
+					<img
+						alt={image.alt_description}
+						className="card-zoom-image"
+						key={image.user.id}
+						src={image.urls.raw}
+					/>
 				</div>
 				<div className="flex justify-between m-3">
 					<div>
@@ -37,7 +47,10 @@ const Image = ({ image, images, index }) => {
 						</span>
 					</div>
 					<div>
-						<a href={image.links.download+"?force=true"}> <MdiDownload className="text-2xl" /> </a>
+						<a href={image.links.download + '?force=true'}>
+							{' '}
+							<MdiDownload className="text-2xl" />{' '}
+						</a>
 					</div>
 				</div>
 			</div>

@@ -8,11 +8,11 @@ module.exports = {
 				'zoom-in': 'zoom-in',
 			},
 			width: {
-				'100': '40rem',
+				100: '40rem',
 			},
 			height: {
-				'100': '30rem',
-			}
+				100: '30rem',
+			},
 		},
 	},
 	variants: {
