@@ -9,7 +9,7 @@ const ProfileDetails = ({user}) => {
             {user.name}
             </div>
             <caption class="font-bold">
-                <a href={user.links.self} target="_blank">@{user.username}</a>
+                <a href={user.links.html} target="_blank">@{user.username}</a>
             </caption>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from "./../Modal/Modal"
+import {MdiDownload} from "./../../assets/DownloadIcon"
 
 const Image = ({ image, images, index }) => {
 	const [currModalImageIndex, setCurrModalImageIndex] = useState(index)
@@ -17,7 +18,7 @@ const Image = ({ image, images, index }) => {
 			setCurrModalImageIndex((prev) => prev - 1)
 		}
 	}
-  console.log(image);
+  console.log(image)
 	return (
 		<>
 			{showModal ? (
@@ -37,7 +38,7 @@ const Image = ({ image, images, index }) => {
 						</span>
 					</div>
 					<div>
-						<a href={''}> Download </a>
+						<a href={image.links.download+"?force=true"}> <MdiDownload className="text-2xl" /> </a>
 					</div>
 				</div>
 			</div>

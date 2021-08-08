@@ -45,7 +45,7 @@ const Images = ({ data }) => {
 				loader={<h3> Loading...</h3>}
 				endMessage={<h4>Nothing more to show</h4>}
 			>
-				<div className="flex">
+				<div className="flex m-3">
 					<div className="flex flex-wrap gap-2 justify-center">
 						{images.map((image, index) => (
 							<Image image={image} index={index} images={images} />

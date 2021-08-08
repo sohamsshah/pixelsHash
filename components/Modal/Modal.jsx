@@ -6,8 +6,6 @@ import SocialLinks from '../SocialLinks/SocialLinks'
 import { MdiCalendarMonth } from '../../assets/CalendarIcon'
 import moment from 'moment'
 
-
-
 const Modal = ({image, closeModal, handlePrevModalImage, handleNextModalImage}) => {
     return (
         <>
