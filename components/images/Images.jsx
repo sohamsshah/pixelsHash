@@ -4,10 +4,11 @@ import Image from '../Image/Image'
 import Input from '../Input/Input'
 
 const Images = ({ data }) => {
+	const DEFAULT_QUERY = 'code'
 	const [images, setImages] = useState(data.results)
 	const [hasMore, setHasMore] = useState(true)
 	const [page, setPage] = useState(2)
-	const [query, setQuery] = useState('code')
+	const [query, setQuery] = useState(DEFAULT_QUERY)
 
 	useEffect(() => {
 		getMoreImages()
@@ -15,7 +16,7 @@ const Images = ({ data }) => {
 
 	const searchImages = (e) => {
 		if (e.keyCode === 13) {
-      setQuery(e.target.value)
+			setQuery(e.target.value)
 			setImages([])
 			setPage(1)
 			setHasMore(true)
@@ -24,7 +25,7 @@ const Images = ({ data }) => {
 
 	const getMoreImages = async () => {
 		const res = await fetch(
-			`https://api.unsplash.com/search/photos?client_id=ZHDOvMwb905FFU0Ouxa5d1dvHIY4J1E_RlmVlA4GIh0&query=${query}&page=${page}&per_page=20`,
+			`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=20`,
 		)
 		const newPosts = await res.json()
 		if (newPosts.total_pages < page) {
@@ -46,8 +47,8 @@ const Images = ({ data }) => {
 			>
 				<div className="flex">
 					<div className="flex flex-wrap gap-2 justify-center">
-						{images.map((image) => (
-							<Image image={image} />
+						{images.map((image, index) => (
+							<Image image={image} index={index} images={images} />
 						))}
 					</div>
 				</div>
