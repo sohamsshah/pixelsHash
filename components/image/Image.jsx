@@ -18,7 +18,6 @@ const Image = ({ image, images, index }) => {
 			setCurrModalImageIndex((prev) => prev - 1)
 		}
 	}
-  console.log(image)
 	return (
 		<>
 			{showModal ? (
