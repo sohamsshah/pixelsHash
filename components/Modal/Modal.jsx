@@ -5,6 +5,9 @@ import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import SocialLinks from '../SocialLinks/SocialLinks'
 import { MdiCalendarMonth } from '../../assets/CalendarIcon'
 import moment from 'moment'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 
 const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }) => {
 	return (
@@ -41,9 +44,12 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 						<div className="lg:m-20 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
 							<div className="lg:flex p-6">
 								<div>
-									<img
+									<LazyLoadImage
+										effect="blur"
+										alt={image.alt_description}
+										key={image.user.id}
 										className="lg:w-100 lg:h-100 h-full w-full"
-										src={image.urls.regular}
+										src={image.urls.regular} 
 									/>
 								</div>
 								<div className="lg:w-96 flex flex-col justify-start lg:px-10 py-5 lg:py-0">

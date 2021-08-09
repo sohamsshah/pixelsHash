@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import Modal from './../Modal/Modal'
 import { MdiDownload } from './../../assets/DownloadIcon'
+import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const Image = ({ image, images, index }) => {
+const Image = ({ image, images, index,  scrollPosition }) => {
 	const [currModalImageIndex, setCurrModalImageIndex] = useState(index)
 	const [showModal, setShowModal] = useState(false)
 	const [modalImage, setModalImage] = useState(images[index])
@@ -30,12 +32,14 @@ const Image = ({ image, images, index }) => {
 			) : null}
 			<div className="card">
 			<div onClick={() => setShowModal(true)} className="card-zoom cursor-zoom-in">
-					<img
-						alt={image.alt_description}
-						className="card-zoom-image"
-						key={image.user.id}
-						src={image.urls.raw}
-					/>
+				<LazyLoadImage
+					effect="blur"
+					alt={image.alt_description}
+					key={image.user.id}
+					scrollPosition={scrollPosition}
+					className="card-zoom-image"
+					src={image.urls.raw}
+				/>
 				</div>
 				<div className="flex justify-between m-3">
 					<div>
@@ -58,4 +62,4 @@ const Image = ({ image, images, index }) => {
 	)
 }
 
-export default Image
+export default trackWindowScroll(Image);
