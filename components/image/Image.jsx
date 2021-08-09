@@ -29,7 +29,7 @@ const Image = ({ image, images, index }) => {
 				/>
 			) : null}
 			<div className="card">
-				<div onClick={() => setShowModal(true)} className="card-zoom cursor-zoom-in">
+			<div onClick={() => setShowModal(true)} className="card-zoom cursor-zoom-in">
 					<img
 						alt={image.alt_description}
 						className="card-zoom-image"

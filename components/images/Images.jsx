@@ -7,6 +7,7 @@ import Alert from '../Alert/Alert'
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
+	const PER_PAGE = '10'
 	const [images, setImages] = useState(data.results)
 	const [hasMore, setHasMore] = useState(true)
 	const [page, setPage] = useState(2)
@@ -27,7 +28,7 @@ const Images = ({ data }) => {
 
 	const getMoreImages = async () => {
 		const res = await fetch(
-			`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=20`,
+			`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
 		)
 		const newPosts = await res.json()
 		if (newPosts.total_pages < page) {
@@ -45,12 +46,12 @@ const Images = ({ data }) => {
 				next={getMoreImages}
 				hasMore={hasMore}
 				scrollThreshold={0.99}
-				loader={<Loader numberOfCards={6} />}
+				loader={(images.length < 6)?"":<Loader numberOfCards={6} /> }
 				endMessage={
-					<Alert color="white" bgColor="pink-500">
+					images.length > 3 ? <Alert color="white" bgColor="blue-500">
 						{' '}
 						Wohoo! You have reached the end! 🎉
-					</Alert>
+					</Alert>:""
 				}
 			>
 				<div className="flex m-3 justify-center">
@@ -60,6 +61,16 @@ const Images = ({ data }) => {
 						))}
 					</div>
 				</div>
+				{images.length === 0 ? <Alert color="white" bgColor="blue-500">
+						{' '}
+						Sorry, nothing to show! Try searching for other keywords 😅
+					</Alert> : ""
+					}
+				{images.length < 3 && images.length > 0? <Alert color="white" bgColor="blue-500">
+						{' '}
+						Wohoo! You have reached the end! 🎉
+					</Alert> : ""}
+				
 			</InfiniteScroll>
 		</>
 	)
