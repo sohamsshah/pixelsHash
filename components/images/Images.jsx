@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import GridImage from '../GridImage/GridImage'
-import ListImage from '../ListImage/ListImage'
+import Image from '../Image/Image'
 import Input from '../Input/Input'
 import Loader from '../Loader/Loader'
 import Alert from '../Alert/Alert'
 import englishBadWords from 'naughty-words/en.json'
+import { MdiFormatListBulletedSquare } from '../../assets/ListIcon'
+import { MdiGrid } from '../../assets/GridIcon'
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -48,13 +49,20 @@ const Images = ({ data }) => {
 	}
 	return (
 		<>
-			<Input onKeyDown={(e) => searchImages(e)} />
+			<div className="flex justify-center">
+				<Input onKeyDown={(e) => searchImages(e)} />
+				<button className="text-2xl" onClick={() => setIsGridView((prev) => !prev)}>
+					{isGridView ? <MdiFormatListBulletedSquare /> : <MdiGrid />}
+				</button>
+			</div>
 			<InfiniteScroll
 				dataLength={images.length}
 				next={getMoreImages}
 				hasMore={hasMore}
 				scrollThreshold={0.99}
-				loader={images.length < 6 ? '' : <Loader numberOfCards={6} />}
+				loader={
+					images.length < 6 ? '' : <Loader isGridView={isGridView} numberOfItems={6} />
+				}
 				endMessage={
 					images.length > 3 ? (
 						<Alert color="white" bgColor="blue-500">
@@ -67,29 +75,21 @@ const Images = ({ data }) => {
 				}
 			>
 				<div className="flex m-3 justify-center">
-					{isGridView ? (
-						<div className="flex flex-wrap gap-2 justify-center">
-							{images.map((image, index) => (
-								<GridImage
-									image={image}
-									index={index}
-									key={index}
-									images={images}
-								/>
-							))}
-						</div>
-					) : (
-						<div>
-							{images.map((image, index) => (
-								<ListImage
-									image={image}
-									index={index}
-									key={index}
-									images={images}
-								/>
-							))}
-						</div>
-					)}
+					<div
+						className={`flex flex-wrap gap-2 justify-center ${
+							!isGridView ? 'flex-col' : ''
+						}`}
+					>
+						{images.map((image, index) => (
+							<Image
+								image={image}
+								index={index}
+								key={index}
+								images={images}
+								isGridView={isGridView}
+							/>
+						))}
+					</div>
 				</div>
 				{/* {images.length === 0 ? <Alert color="white" bgColor="blue-500">
 						{' '}

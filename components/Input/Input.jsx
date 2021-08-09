@@ -2,7 +2,7 @@ import React from 'react'
 
 const Input = ({ onKeyDown }) => {
 	return (
-		<div className="relative flex w-full justify-center flex-wrap items-stretch m-3 p-3">
+		<div className="relative flex justify-center flex-wrap items-stretch m-3 p-3">
 			<input
 				onKeyDown={onKeyDown}
 				type="text"

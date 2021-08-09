@@ -14,7 +14,7 @@ const ProfileDetails = ({ user }) => {
 			/>
 			<div>
 				<div>{user.name}</div>
-				<caption class="font-bold">
+				<caption className="font-bold">
 					<a href={user.links.html} target="_blank">
 						@{user.username}
 					</a>

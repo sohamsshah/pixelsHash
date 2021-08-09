@@ -5,7 +5,7 @@ import { MdiWeb } from './../../assets/InternetIcon'
 
 const SocialLinks = ({ social }) => {
 	return (
-		<div class="my-5 flex justify-start">
+		<div className="my-5 flex justify-start">
 			{social.instagram_username !== null ? (
 				<div>
 					<a

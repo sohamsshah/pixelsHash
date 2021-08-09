@@ -9,9 +9,11 @@ module.exports = {
 			},
 			width: {
 				100: '40rem',
+				125: '50rem',
 			},
 			height: {
 				100: '30rem',
+				125: '50rem',
 			},
 		},
 	},

@@ -11,7 +11,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css'
 const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }) => {
 	return (
 		<>
-			<div class="absolute inset-0 flex items-center justify-center py-12">
+			<div className="absolute inset-0 flex items-center justify-center py-12">
 				<div className="justify-center items-center flex max-h-full overflow-auto fixed inset-0 z-50 outline-none focus:outline-none">
 					<button
 						className="fixed top-2 left-2 p-1 z-60 ml-auto border-0 text-white float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -52,7 +52,7 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 									/>
 								</div>
 								<div className="lg:w-96 flex flex-col justify-start lg:px-10 py-5 lg:py-0">
-									<div class="mb-5">
+									<div className="mb-5">
 										<div className="font-bold text-lg">About this Image</div>
 										<span>{image.description}</span>
 										{image.user.location !== null ? (
@@ -70,13 +70,13 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 										{image.tags.length !== 0 ? <Tags tags={image.tags} /> : ''}
 									</div>
 									<div className="mb-5">
-										<div class="font-bold text-lg mb-2">Picture 📸 by</div>
+										<div className="font-bold text-lg mb-2">Picture 📸 by</div>
 										<ProfileDetails user={image.user} />
 										<SocialLinks social={image.user.social} />
 
 										{image.user.bio ? (
 											<div>
-												<span class="font-bold text-lg mb-2">Bio</span>
+												<span className="font-bold text-lg mb-2">Bio</span>
 												<div>{image.user.bio}</div>
 											</div>
 										) : (
