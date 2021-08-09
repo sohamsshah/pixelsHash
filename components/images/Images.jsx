@@ -22,8 +22,8 @@ const Images = ({ data }) => {
 	const searchImages = (e) => {
 		if (e.keyCode === 13) {
 			if(englishBadWords.toString().includes(e.target.value)){
-				e.target.value = 'code'
-				setQuery('code')		
+				e.target.value = ''
+				setQuery('')		
 			}else{
 				setQuery(e.target.value)	
 			}
