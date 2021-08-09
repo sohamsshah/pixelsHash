@@ -4,6 +4,8 @@ import Image from '../Image/Image'
 import Input from '../Input/Input'
 import Loader from '../Loader/Loader'
 import Alert from '../Alert/Alert'
+import englishBadWords from "naughty-words/en.json"
+
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -19,7 +21,12 @@ const Images = ({ data }) => {
 
 	const searchImages = (e) => {
 		if (e.keyCode === 13) {
-			setQuery(e.target.value)
+			if(englishBadWords.toString().includes(e.target.value)){
+				e.target.value = 'code'
+				setQuery('code')		
+			}else{
+				setQuery(e.target.value)	
+			}
 			setImages([])
 			setPage(1)
 			setHasMore(true)
@@ -61,7 +68,7 @@ const Images = ({ data }) => {
 						))}
 					</div>
 				</div>
-				{images.length === 0 ? <Alert color="white" bgColor="blue-500">
+				{/* {images.length === 0 ? <Alert color="white" bgColor="blue-500">
 						{' '}
 						Sorry, nothing to show! Try searching for other keywords 😅
 					</Alert> : ""
@@ -69,7 +76,7 @@ const Images = ({ data }) => {
 				{images.length < 3 && images.length > 0? <Alert color="white" bgColor="blue-500">
 						{' '}
 						Wohoo! You have reached the end! 🎉
-					</Alert> : ""}
+					</Alert> : ""} */}
 				
 			</InfiniteScroll>
 		</>
