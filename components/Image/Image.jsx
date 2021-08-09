@@ -64,7 +64,7 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 					</div>
 				</div>
 			) : (
-				<div className="card flex justify-around">
+				<div className="card md:flex-row flex-col flex md:justify-around">
 					<div
 						onClick={() => setShowModal(true)}
 						className="list-card-zoom cursor-zoom-in"
