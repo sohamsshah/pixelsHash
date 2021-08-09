@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import Image from '../Image/Image'
+import GridImage from '../GridImage/GridImage'
+import ListImage from '../ListImage/ListImage'
 import Input from '../Input/Input'
 import Loader from '../Loader/Loader'
 import Alert from '../Alert/Alert'
-import englishBadWords from "naughty-words/en.json"
-
+import englishBadWords from 'naughty-words/en.json'
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -14,6 +14,7 @@ const Images = ({ data }) => {
 	const [hasMore, setHasMore] = useState(true)
 	const [page, setPage] = useState(2)
 	const [query, setQuery] = useState(DEFAULT_QUERY)
+	const [isGridView, setIsGridView] = useState(false)
 
 	useEffect(() => {
 		getMoreImages()
@@ -21,11 +22,11 @@ const Images = ({ data }) => {
 
 	const searchImages = (e) => {
 		if (e.keyCode === 13) {
-			if(englishBadWords.toString().includes(e.target.value)){
+			if (englishBadWords.toString().includes(e.target.value)) {
 				e.target.value = ''
-				setQuery('')		
-			}else{
-				setQuery(e.target.value)	
+				setQuery('')
+			} else {
+				setQuery(e.target.value)
 			}
 			setImages([])
 			setPage(1)
@@ -53,20 +54,42 @@ const Images = ({ data }) => {
 				next={getMoreImages}
 				hasMore={hasMore}
 				scrollThreshold={0.99}
-				loader={(images.length < 6)?"":<Loader numberOfCards={6} /> }
+				loader={images.length < 6 ? '' : <Loader numberOfCards={6} />}
 				endMessage={
-					images.length > 3 ? <Alert color="white" bgColor="blue-500">
-						{' '}
-						Wohoo! You have reached the end! 🎉
-					</Alert>:""
+					images.length > 3 ? (
+						<Alert color="white" bgColor="blue-500">
+							{' '}
+							Wohoo! You have reached the end! 🎉
+						</Alert>
+					) : (
+						''
+					)
 				}
 			>
 				<div className="flex m-3 justify-center">
-					<div className="flex flex-wrap gap-2 justify-center">
-						{images.map((image, index) => (
-							<Image image={image} index={index} key={index} images={images} />
-						))}
-					</div>
+					{isGridView ? (
+						<div className="flex flex-wrap gap-2 justify-center">
+							{images.map((image, index) => (
+								<GridImage
+									image={image}
+									index={index}
+									key={index}
+									images={images}
+								/>
+							))}
+						</div>
+					) : (
+						<div>
+							{images.map((image, index) => (
+								<ListImage
+									image={image}
+									index={index}
+									key={index}
+									images={images}
+								/>
+							))}
+						</div>
+					)}
 				</div>
 				{/* {images.length === 0 ? <Alert color="white" bgColor="blue-500">
 						{' '}
@@ -77,7 +100,6 @@ const Images = ({ data }) => {
 						{' '}
 						Wohoo! You have reached the end! 🎉
 					</Alert> : ""} */}
-				
 			</InfiniteScroll>
 		</>
 	)
