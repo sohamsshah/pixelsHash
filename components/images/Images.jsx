@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from '../Image/Image'
-import Input from '../Input/Input'
 import Loader from '../Loader/Loader'
 import Alert from '../Alert/Alert'
 import englishBadWords from 'naughty-words/en.json'
 import { MdiFormatListBulletedSquare } from '../../assets/ListIcon'
 import { MdiGrid } from '../../assets/GridIcon'
+import Creatable from 'react-select/creatable'
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -16,11 +16,42 @@ const Images = ({ data }) => {
 	const [page, setPage] = useState(2)
 	const [query, setQuery] = useState(DEFAULT_QUERY)
 	const [isGridView, setIsGridView] = useState(false)
+	const [selectedOption, setSelectedOption] = useState(null)
+	const [options, setOptions] = useState(null)
+	const defaultOptions = [
+		{ value: 'nature', label: 'Nature' },
+		{ value: 'people', label: 'People' },
+		{ value: 'wallpapers', label: 'Wallpapers' },
+	]
 
 	useEffect(() => {
 		getMoreImages()
 	}, [query])
 
+	useEffect(async () => {
+		const res = await getOptions()
+		setOptions(res.slice(0, 5))
+	}, [])
+
+	const getOptions = async () => {
+		const history = await localStorage.getItem('history')
+		if (history === null) {
+			return defaultOptions
+		}
+		return JSON.parse(history)
+	}
+	const saveQueryToHistory = (query) => {
+		if (localStorage.getItem('history') === null) {
+			localStorage.setItem('history', JSON.stringify(defaultOptions))
+		}
+		let userHistory = JSON.parse(localStorage.getItem('history'))
+		const newHistoryItem = { value: query.toLowerCase(), label: query }
+		userHistory = userHistory.filter((item) => item.value != newHistoryItem.value)
+		userHistory.unshift(newHistoryItem)
+		localStorage.setItem('history', JSON.stringify(userHistory))
+		setOptions(userHistory.slice(0, 5))
+		setSelectedOption(newHistoryItem)
+	}
 	const searchImages = (e) => {
 		if (e.keyCode === 13) {
 			if (englishBadWords.toString().includes(e.target.value)) {
@@ -31,6 +62,7 @@ const Images = ({ data }) => {
 			}
 			setImages([])
 			setPage(1)
+			saveQueryToHistory(e.target.value)
 			setHasMore(true)
 		}
 	}
@@ -50,7 +82,15 @@ const Images = ({ data }) => {
 	return (
 		<>
 			<div className="flex justify-center">
-				<Input onKeyDown={(e) => searchImages(e)} />
+				<Creatable
+					isClearable
+					value={selectedOption}
+					onKeyDown={(e) => searchImages(e)}
+					onChange={setSelectedOption}
+					options={options}
+					className="w-80 m-3"
+					formatCreateLabel={() => `Search this...`}
+				/>
 				<button className="text-2xl" onClick={() => setIsGridView((prev) => !prev)}>
 					{isGridView ? <MdiFormatListBulletedSquare /> : <MdiGrid />}
 				</button>
