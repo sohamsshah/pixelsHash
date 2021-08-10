@@ -10,7 +10,6 @@ module.exports = {
       "eslint:recommended",
       "plugin:react/recommended",
       "prettier",
-      "prettier/react",
     ],
     parserOptions: {
       ecmaVersion: "2017",

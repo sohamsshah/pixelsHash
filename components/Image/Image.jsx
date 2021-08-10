@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Modal from '../Modal/Modal'
 import { MdiDownload } from '../../assets/svgs/DownloadIcon'
 import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component'
@@ -54,7 +54,7 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 							<div>
 								📷 Picture by{' '}
 								<span className="font-bold">
-									<a href={image.user.links.html} target="_blank">
+									<a href={image.user.links.html} rel="noreferrer" target="_blank">
 										{`${image.user.first_name}`}{' '}
 									</a>
 								</span>

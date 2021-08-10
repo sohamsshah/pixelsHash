@@ -10,8 +10,10 @@
     "lint:fix": "eslint --ext .js,.jsx --fix && yarn prettify"
   },
   "dependencies": {
+    "babel-eslint": "^10.1.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint-plugin-babel": "^5.3.1",
     "moment": "^2.29.1",
     "naughty-words": "^1.2.0",
     "next": "latest",

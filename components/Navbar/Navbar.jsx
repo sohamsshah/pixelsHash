@@ -1,4 +1,3 @@
-import React from 'react'
 import Creatable from 'react-select/creatable'
 import { MdiFormatListBulletedSquare } from '../../assets/svgs/ListIcon'
 import { MdiGrid } from '../../assets/svgs/GridIcon'
@@ -37,6 +36,7 @@ const Navbar = ({
 						</button>
 						<a
 							target="_blank"
+                            rel="noreferrer"
 							href="https://github.com/sohamsshah/pixelsHash/"
 							className="text-center text-2xl mx-2"
 						>

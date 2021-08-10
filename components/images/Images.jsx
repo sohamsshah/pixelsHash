@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from '../Image/Image'
 import Loader from '../Loader/Loader'
@@ -26,9 +26,11 @@ const Images = ({ data }) => {
 		getMoreImages()
 	}, [query])
 
-	useEffect(async () => {
-		const res = await getOptions()
-		setOptions(res.slice(0, 5))
+	useEffect(() => {
+		(async function () {
+            const res = await getOptions()
+			setOptions(res.slice(0, 5))
+        })()	
 	}, [])
 
 	const getOptions = async () => {

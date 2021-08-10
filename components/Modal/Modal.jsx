@@ -1,4 +1,3 @@
-import React from 'react'
 import Location from './../Location/Location'
 import Tags from './../Tags/Tags'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
