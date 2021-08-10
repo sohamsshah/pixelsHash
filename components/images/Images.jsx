@@ -7,6 +7,7 @@ import Alert from '../Alert/Alert'
 import englishBadWords from 'naughty-words/en.json'
 import { MdiFormatListBulletedSquare } from '../../assets/ListIcon'
 import { MdiGrid } from '../../assets/GridIcon'
+import Select from 'react-select'
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -16,6 +17,7 @@ const Images = ({ data }) => {
 	const [page, setPage] = useState(2)
 	const [query, setQuery] = useState(DEFAULT_QUERY)
 	const [isGridView, setIsGridView] = useState(false)
+	const [selectedOption, setSelectedOption] = useState(null)
 
 	useEffect(() => {
 		getMoreImages()
@@ -47,10 +49,21 @@ const Images = ({ data }) => {
 			setPage(page + 1)
 		}
 	}
+	const options = [
+		{ value: 'chocolate', label: 'Chocolate' },
+		{ value: 'strawberry', label: 'Strawberry' },
+		{ value: 'vanilla', label: 'Vanilla' },
+	]
 	return (
 		<>
 			<div className="flex justify-center">
-				<Input onKeyDown={(e) => searchImages(e)} />
+				<Select
+					value={selectedOption}
+					onKeyDown={(e) => searchImages(e)}
+					options={options}
+					className="w-80 m-3"
+					noOptionsMessage={() => null}
+				/>
 				<button className="text-2xl" onClick={() => setIsGridView((prev) => !prev)}>
 					{isGridView ? <MdiFormatListBulletedSquare /> : <MdiGrid />}
 				</button>
