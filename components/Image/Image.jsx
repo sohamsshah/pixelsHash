@@ -83,9 +83,9 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 							src={image.urls.raw}
 						/>
 					</div>
-					<div className="flex flex-col justify-between m-3 w-80">
+					<div className="flex h-full flex-col justify-between mr-4 py-4 w-80">
 						<div>
-							<div className="mb-5">
+							<div className="">
 								<div className="font-bold text-lg">About this Image</div>
 								<span>{image.description}</span>
 								{image.user.location !== null ? (
