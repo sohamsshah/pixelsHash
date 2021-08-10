@@ -36,38 +36,38 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 			) : null}
 			{isGridView ? (
 				<div className="card items-start flex-col flex justify-between">
-				<div className="h-full flex flex-col items-center justify-between">
-					<div
-						onClick={() => setShowModal(true)}
-						className="h-full card-zoom cursor-zoom-in"
-					>
-						<LazyLoadImage
-							effect="blur"
-							alt={image.alt_description}
-							key={image.user.id}
-							scrollPosition={scrollPosition}
-							className="card-zoom-image"
-							src={image.urls.raw}
-						/>
-					</div>
-					<div className="px-4 w-full flex justify-between m-3">
-						<div>
-							📷 Picture by{' '}
-							<span className="font-bold">
-								<a href={image.user.links.html} target="_blank">
-									{`${image.user.first_name}`}{' '}
-								</a>
-							</span>
+					<div className="h-full flex flex-col items-center justify-between">
+						<div
+							onClick={() => setShowModal(true)}
+							className="h-full card-zoom cursor-zoom-in"
+						>
+							<LazyLoadImage
+								effect="blur"
+								alt={image.alt_description}
+								key={image.user.id}
+								scrollPosition={scrollPosition}
+								className="card-zoom-image"
+								src={image.urls.raw}
+							/>
 						</div>
-						<div>
-							<a href={image.links.download + '?force=true'}>
-								{' '}
-								<MdiDownload className="text-2xl" />{' '}
-							</a>
+						<div className="px-4 w-full flex justify-between m-3">
+							<div>
+								📷 Picture by{' '}
+								<span className="font-bold">
+									<a href={image.user.links.html} target="_blank">
+										{`${image.user.first_name}`}{' '}
+									</a>
+								</span>
+							</div>
+							<div>
+								<a href={image.links.download + '?force=true'}>
+									{' '}
+									<MdiDownload className="text-2xl" />{' '}
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			) : (
 				<div className="card md:flex-row flex-col flex md:justify-around items-center">
 					<div
