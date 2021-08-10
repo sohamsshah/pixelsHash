@@ -1,4 +1,4 @@
-import Images from '../components/Images/Images'
+import Images from '../components/images/Images'
 
 export default function Home(props) {
 	return (
