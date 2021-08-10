@@ -1,7 +1,7 @@
 import React from 'react'
-import { MdiTwitter } from './../../assets/TwitterIcon'
-import { MdiInstagram } from './../../assets/InstagramIcon'
-import { MdiWeb } from './../../assets/InternetIcon'
+import { MdiTwitter } from './../../assets/svgs/TwitterIcon'
+import { MdiInstagram } from './../../assets/svgs/InstagramIcon'
+import { MdiWeb } from './../../assets/svgs/InternetIcon'
 
 const SocialLinks = ({ social }) => {
 	return (
