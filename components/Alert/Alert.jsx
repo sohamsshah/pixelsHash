@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Alert = ({ bgColor, color, children }) => {
 	return (
 		<div className="flex justify-center m-24">

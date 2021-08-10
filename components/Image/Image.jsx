@@ -106,7 +106,7 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 							<div>
 								📷 Picture by{' '}
 								<span className="font-bold">
-									<a href={image.user.links.html} target="_blank">
+									<a href={image.user.links.html} rel="noreferrer" target="_blank">
 										{`${image.user.first_name}`}{' '}
 									</a>
 								</span>

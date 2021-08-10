@@ -1,4 +1,3 @@
-import React from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
@@ -15,7 +14,7 @@ const ProfileDetails = ({ user }) => {
 			<div>
 				<div>{user.name}</div>
 				<caption className="font-bold">
-					<a href={user.links.html} target="_blank">
+					<a href={user.links.html} target="_blank" rel="noreferrer">
 						@{user.username}
 					</a>
 				</caption>
