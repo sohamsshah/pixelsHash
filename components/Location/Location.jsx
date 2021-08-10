@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdiMapMarker } from './../../assets/MapIcon'
+import { MdiMapMarker } from './../../assets/svgs/MapIcon'
 
 const Location = ({ location }) => {
 	return (
