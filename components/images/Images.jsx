@@ -4,9 +4,7 @@ import Image from '../Image/Image'
 import Loader from '../Loader/Loader'
 import Alert from '../Alert/Alert'
 import englishBadWords from 'naughty-words/en.json'
-import { MdiFormatListBulletedSquare } from '../../assets/ListIcon'
-import { MdiGrid } from '../../assets/GridIcon'
-import Creatable from 'react-select/creatable'
+import Navbar from '../Navbar/Navbar'
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -54,9 +52,12 @@ const Images = ({ data }) => {
 	}
 	const searchImages = (e) => {
 		if (e.keyCode === 13) {
+			if (e.target.value === '') {
+				e.target.value = selectedOption.value
+			}
 			if (englishBadWords.toString().includes(e.target.value)) {
-				e.target.value = ''
-				setQuery('')
+				e.target.value = 'bad word'
+				setQuery('bad word')
 			} else {
 				setQuery(e.target.value)
 			}
@@ -82,18 +83,14 @@ const Images = ({ data }) => {
 	return (
 		<>
 			<div className="flex justify-center">
-				<Creatable
-					isClearable
-					value={selectedOption}
-					onKeyDown={(e) => searchImages(e)}
-					onChange={setSelectedOption}
+				<Navbar
+					isGridView={isGridView}
+					searchImages={searchImages}
+					selectedOption={selectedOption}
+					setSelectedOption={setSelectedOption}
 					options={options}
-					className="w-80 m-3"
-					formatCreateLabel={() => `Search this...`}
+					setIsGridView={setIsGridView}
 				/>
-				<button className="text-2xl" onClick={() => setIsGridView((prev) => !prev)}>
-					{isGridView ? <MdiFormatListBulletedSquare /> : <MdiGrid />}
-				</button>
 			</div>
 			<InfiniteScroll
 				dataLength={images.length}
