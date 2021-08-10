@@ -18,11 +18,37 @@ const Images = ({ data }) => {
 	const [query, setQuery] = useState(DEFAULT_QUERY)
 	const [isGridView, setIsGridView] = useState(false)
 	const [selectedOption, setSelectedOption] = useState(null)
-
+	const [options, setOptions] = useState(null)
+	const defaultOptions = [
+		{ value: 'nature', label: 'Nature' },
+		{ value: 'people', label: 'People' },
+		{ value: 'wallpapers', label: 'Wallpapers' },
+	  ];
 	useEffect(() => {
 		getMoreImages()
 	}, [query])
 
+	useEffect(async () => {
+		const res = await getOptions();
+		setOptions(res);
+	}, [])
+
+	const getOptions = async () => {
+		const history = await localStorage.getItem('history');
+		if(history === null){
+			return defaultOptions
+		}
+		return JSON.parse(history);
+	}
+	const saveQueryToHistory = (query) => {
+		if(localStorage.getItem('history') === null){
+			localStorage.setItem('history', JSON.stringify(defaultOptions));	
+		}
+		let userHistory = JSON.parse(localStorage.getItem('history'));
+		userHistory.push({value: query.toLowerCase(), label: query});
+		localStorage.setItem('history', JSON.stringify(userHistory));
+		setOptions(userHistory);
+	}
 	const searchImages = (e) => {
 		if (e.keyCode === 13) {
 			if (englishBadWords.toString().includes(e.target.value)) {
@@ -33,6 +59,7 @@ const Images = ({ data }) => {
 			}
 			setImages([])
 			setPage(1)
+			saveQueryToHistory(e.target.value);
 			setHasMore(true)
 		}
 	}
@@ -49,11 +76,7 @@ const Images = ({ data }) => {
 			setPage(page + 1)
 		}
 	}
-	const options = [
-		{ value: 'chocolate', label: 'Chocolate' },
-		{ value: 'strawberry', label: 'Strawberry' },
-		{ value: 'vanilla', label: 'Vanilla' },
-	]
+	
 	return (
 		<>
 			<div className="flex justify-center">
