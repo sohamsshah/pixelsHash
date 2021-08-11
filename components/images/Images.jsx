@@ -5,6 +5,7 @@ import Loader from '../Loader/Loader'
 import Alert from '../Alert/Alert'
 import englishBadWords from 'naughty-words/en.json'
 import Navbar from '../Navbar/Navbar'
+import noResults from './../../assets/images/noResults.gif'
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -16,6 +17,7 @@ const Images = ({ data }) => {
 	const [isGridView, setIsGridView] = useState(false)
 	const [selectedOption, setSelectedOption] = useState(null)
 	const [options, setOptions] = useState(null)
+	const [isLoading, setIsLoading] = useState(false);
 	const defaultOptions = [
 		{ value: 'nature', label: 'Nature' },
 		{ value: 'people', label: 'People' },
@@ -77,6 +79,7 @@ const Images = ({ data }) => {
 
 	const getMoreImages = async () => {
 		try {
+			setIsLoading(true)
 			const res = await fetch(
 				`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
 			)
@@ -89,6 +92,8 @@ const Images = ({ data }) => {
 			}
 		} catch (error) {
 			console.log(error.response)
+		} finally{
+			setIsLoading(false)
 		}
 	}
 	return (
@@ -111,16 +116,7 @@ const Images = ({ data }) => {
 				loader={
 					images.length < 6 ? '' : <Loader isGridView={isGridView} numberOfItems={3} />
 				}
-				endMessage={
-					images.length > 3 ? (
-						<Alert color="white" bgColor="blue-500">
-							{' '}
-							Wohoo! You have reached the end! 🎉
-						</Alert>
-					) : (
-						''
-					)
-				}
+
 			>
 				<div className="flex m-3 justify-center">
 					<div
@@ -139,16 +135,20 @@ const Images = ({ data }) => {
 						))}
 					</div>
 				</div>
-				{/* {images.length === 0 ? <Alert color="white" bgColor="blue-500">
-						{' '}
-						Sorry, nothing to show! Try searching for other keywords 😅
-					</Alert> : ""
-					}
-				{images.length < 3 && images.length > 0? <Alert color="white" bgColor="blue-500">
-						{' '}
-						Wohoo! You have reached the end! 🎉
-					</Alert> : ""} */}
+				
 			</InfiniteScroll>
+			{images.length === 0 && !isLoading ? 
+				<div className="flex justify-center items-center flex-col">
+				
+				<img className="w-96 h-96" src={noResults.src} />
+				
+				<div>
+				<Alert color="white" bgColor="black">
+						Sorry, no results match your search! Try searching for other keywords 😅
+				</Alert>
+				</div>
+				</div> : ""
+			}
 		</>
 	)
 }
