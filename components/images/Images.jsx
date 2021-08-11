@@ -71,15 +71,19 @@ const Images = ({ data }) => {
 	}
 
 	const getMoreImages = async () => {
-		const res = await fetch(
-			`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
-		)
-		const newPosts = await res.json()
-		if (newPosts.total_pages < page) {
-			setHasMore(false)
-		} else {
-			setImages((images) => [...images, ...newPosts.results])
-			setPage(page + 1)
+		try {
+			const res = await fetch(
+				`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
+			)
+			const newPosts = await res.json()
+			if (newPosts.total_pages < page) {
+				setHasMore(false)
+			} else {
+				setImages((images) => [...images, ...newPosts.results])
+				setPage(page + 1)
+			}
+		} catch (error) {
+			console.log(error.response)
 		}
 	}
 	return (
