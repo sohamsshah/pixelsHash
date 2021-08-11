@@ -24,7 +24,6 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 			setCurrModalImageIndex((prev) => prev - 1)
 		}
 	}
-	console.log(currModalImageIndex)
 	return (
 		<>
 			{showModal ? (
