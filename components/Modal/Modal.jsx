@@ -50,7 +50,7 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 										src={image.urls.regular}
 									/>
 								</div>
-								<div className="overflow-y-auto max-h-64 lg:max-h-full lg:w-96 flex flex-col justify-start lg:px-10 py-5 lg:py-0">
+								<div className="overflow-y-auto max-h-56 lg:max-h-full lg:w-96 flex flex-col justify-start lg:px-10 py-5 lg:py-0">
 									<div className="mb-5">
 										<div className="font-bold text-lg">About this Image</div>
 										<span>{image.description}</span>
