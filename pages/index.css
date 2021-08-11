@@ -10,7 +10,7 @@
 }
 
 .card-zoom-image {
-	@apply max-h-80 transform;
+	@apply max-h-72 lg:max-h-80 transform;
 }
 
 .list-card-zoom {
