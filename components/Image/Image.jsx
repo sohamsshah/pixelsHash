@@ -47,7 +47,7 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 								key={image.user.id}
 								scrollPosition={scrollPosition}
 								className="card-zoom-image"
-								src={image.urls.raw}
+								src={image.urls.regular}
 							/>
 						</div>
 						<div className="px-4 w-full flex justify-between m-3">
@@ -80,7 +80,7 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 							key={image.user.id}
 							scrollPosition={scrollPosition}
 							className="card-zoom-image"
-							src={image.urls.raw}
+							src={image.urls.regular}
 						/>
 					</div>
 					<div className="flex h-full flex-col justify-between mr-4 py-4 w-80">
