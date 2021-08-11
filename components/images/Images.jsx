@@ -57,7 +57,12 @@ const Images = ({ data }) => {
 			if (e.target.value === '') {
 				e.target.value = selectedOption.value
 			}
-			if (englishBadWords.toString().includes(e.target.value)) {
+			console.log(typeof(englishBadWords))
+			let englishBadWordsArray = []
+			for(let i in englishBadWords){
+				englishBadWordsArray.push(englishBadWords[i])
+			}
+			if (englishBadWordsArray.find(item => item === e.target.value)) {
 				e.target.value = 'bad word'
 				setQuery('bad word')
 			} else {
@@ -104,7 +109,7 @@ const Images = ({ data }) => {
 				hasMore={hasMore}
 				scrollThreshold={0.99}
 				loader={
-					images.length < 6 ? '' : <Loader isGridView={isGridView} numberOfItems={6} />
+					images.length < 6 ? '' : <Loader isGridView={isGridView} numberOfItems={3} />
 				}
 				endMessage={
 					images.length > 3 ? (
