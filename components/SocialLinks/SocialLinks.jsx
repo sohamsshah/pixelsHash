@@ -21,7 +21,11 @@ const SocialLinks = ({ social }) => {
 
 			{social.twitter_username ? (
 				<div>
-					<a target="_blank" rel="noreferrer" href={`https://www.twitter.com/${social.twitter_username}`}>
+					<a
+						target="_blank"
+						rel="noreferrer"
+						href={`https://www.twitter.com/${social.twitter_username}`}
+					>
 						<MdiTwitter className="text-3xl mr-2" />
 					</a>
 				</div>

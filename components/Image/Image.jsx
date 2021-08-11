@@ -24,6 +24,7 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 			setCurrModalImageIndex((prev) => prev - 1)
 		}
 	}
+	console.log(currModalImageIndex)
 	return (
 		<>
 			{showModal ? (
@@ -54,7 +55,11 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 							<div>
 								📷 Picture by{' '}
 								<span className="font-bold">
-									<a href={image.user.links.html} rel="noreferrer" target="_blank">
+									<a
+										href={image.user.links.html}
+										rel="noreferrer"
+										target="_blank"
+									>
 										{`${image.user.first_name}`}{' '}
 									</a>
 								</span>
@@ -106,7 +111,11 @@ const Image = ({ image, images, index, scrollPosition, isGridView }) => {
 							<div>
 								📷 Picture by{' '}
 								<span className="font-bold">
-									<a href={image.user.links.html} rel="noreferrer" target="_blank">
+									<a
+										href={image.user.links.html}
+										rel="noreferrer"
+										target="_blank"
+									>
 										{`${image.user.first_name}`}{' '}
 									</a>
 								</span>
