@@ -28,21 +28,20 @@ const Navbar = ({
 					formatCreateLabel={() => `Search this...`}
 				/>
 				<div className="flex items-center">
-						<button
-							className="text-center text-2xl mx-2"
-							onClick={() => setIsGridView((prev) => !prev)}
-						>
-							{isGridView ? <MdiFormatListBulletedSquare /> : <MdiGrid />}
-						</button>
-						<a
-							target="_blank"
-                            rel="noreferrer"
-							href="https://github.com/sohamsshah/pixelsHash/"
-							className="text-center text-2xl mx-2"
-						>
-							<MdiGithub />
-						</a>
-					
+					<button
+						className="text-center text-2xl mx-2"
+						onClick={() => setIsGridView((prev) => !prev)}
+					>
+						{isGridView ? <MdiFormatListBulletedSquare /> : <MdiGrid />}
+					</button>
+					<a
+						target="_blank"
+						rel="noreferrer"
+						href="https://github.com/sohamsshah/pixelsHash/"
+						className="text-center text-2xl mx-2"
+					>
+						<MdiGithub />
+					</a>
 				</div>
 			</div>
 		</div>

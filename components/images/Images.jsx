@@ -27,10 +27,10 @@ const Images = ({ data }) => {
 	}, [query])
 
 	useEffect(() => {
-		(async function () {
-            const res = await getOptions()
+		;(async function () {
+			const res = await getOptions()
 			setOptions(res.slice(0, 5))
-        })()	
+		})()
 	}, [])
 
 	const getOptions = async () => {
