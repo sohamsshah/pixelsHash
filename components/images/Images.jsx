@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import Image from '../image/Image'
+import Image from '../Image/Image'
 import Loader from '../Loader/Loader'
 import Alert from '../Alert/Alert'
 import englishBadWords from 'naughty-words/en.json'
