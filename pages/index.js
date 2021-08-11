@@ -1,6 +1,6 @@
 import Images from '../components/images/Images'
 
-export default function Home({imageData}) {
+export default function Home({ imageData }) {
 	return (
 		<>
 			{imageData === null || imageData.errors ? (

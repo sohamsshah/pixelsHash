@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import Image from '../Image/Image'
+import ImageCard from '../ImageCard/ImageCard'
 import Loader from '../Loader/Loader'
-import Alert from '../Alert/Alert'
 import englishBadWords from 'naughty-words/en.json'
 import Navbar from '../Navbar/Navbar'
-import noResults from './../../assets/images/noResults.gif'
+import NoResults from '../NoResults/NoResults'
 
 const Images = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
@@ -17,7 +16,7 @@ const Images = ({ data }) => {
 	const [isGridView, setIsGridView] = useState(false)
 	const [selectedOption, setSelectedOption] = useState(null)
 	const [options, setOptions] = useState(null)
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false)
 	const defaultOptions = [
 		{ value: 'nature', label: 'Nature' },
 		{ value: 'people', label: 'People' },
@@ -59,12 +58,12 @@ const Images = ({ data }) => {
 			if (e.target.value === '') {
 				e.target.value = selectedOption.value
 			}
-			console.log(typeof(englishBadWords))
+			console.log(typeof englishBadWords)
 			let englishBadWordsArray = []
-			for(let i in englishBadWords){
+			for (let i in englishBadWords) {
 				englishBadWordsArray.push(englishBadWords[i])
 			}
-			if (englishBadWordsArray.find(item => item === e.target.value)) {
+			if (englishBadWordsArray.find((item) => item === e.target.value)) {
 				e.target.value = 'bad word'
 				setQuery('bad word')
 			} else {
@@ -92,7 +91,7 @@ const Images = ({ data }) => {
 			}
 		} catch (error) {
 			console.log(error.response)
-		} finally{
+		} finally {
 			setIsLoading(false)
 		}
 	}
@@ -113,10 +112,7 @@ const Images = ({ data }) => {
 				next={getMoreImages}
 				hasMore={hasMore}
 				scrollThreshold={0.99}
-				loader={
-					images.length < 6 ? '' : <Loader isGridView={isGridView} numberOfItems={3} />
-				}
-
+				loader={images.length < 6 && <Loader isGridView={isGridView} numberOfItems={3} />}
 			>
 				<div className="flex m-3 justify-center">
 					<div
@@ -125,7 +121,7 @@ const Images = ({ data }) => {
 						}`}
 					>
 						{images.map((image, index) => (
-							<Image
+							<ImageCard
 								image={image}
 								index={index}
 								key={index}
@@ -135,20 +131,8 @@ const Images = ({ data }) => {
 						))}
 					</div>
 				</div>
-				
 			</InfiniteScroll>
-			{images.length === 0 && !isLoading ? 
-				<div className="flex justify-center items-center flex-col">
-				
-				<img className="w-96 h-96" src={noResults.src} />
-				
-				<div>
-				<Alert color="white" bgColor="black">
-						Sorry, no results match your search! Try searching for other keywords 😅
-				</Alert>
-				</div>
-				</div> : ""
-			}
+			{images.length === 0 && !isLoading && <NoResults />}
 		</>
 	)
 }

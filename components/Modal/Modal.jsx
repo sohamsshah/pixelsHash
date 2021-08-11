@@ -1,9 +1,6 @@
-import Location from './../Location/Location'
-import Tags from './../Tags/Tags'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import SocialLinks from '../SocialLinks/SocialLinks'
-import { MdiCalendarMonth } from '../../assets/svgs/CalendarIcon'
-import moment from 'moment'
+import ImageDetails from '../ImageDetails/ImageDetails'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import { MdiChevronLeft } from '../../assets/svgs/ChevLeftIcon'
@@ -52,21 +49,7 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 								</div>
 								<div className="overflow-y-auto max-h-56 lg:max-h-full lg:w-96 flex flex-col justify-start lg:px-10 py-5 lg:py-0">
 									<div className="mb-5">
-										<div className="font-bold text-lg">About this Image</div>
-										<span>{image.description}</span>
-										{image.user.location !== null ? (
-											<Location location={image.user.location} />
-										) : (
-											''
-										)}
-										<div>
-											<span className="flex items-center">
-												<MdiCalendarMonth className="text-lg mr-1" />{' '}
-												Published on{' '}
-												{moment(image.created_at).format('MMM Do YYYY')}
-											</span>
-										</div>
-										{image.tags.length !== 0 ? <Tags tags={image.tags} /> : ''}
+										<ImageDetails image={image} />
 									</div>
 									<div className="mb-5">
 										<div className="font-bold text-lg mb-2">Picture 📸 by</div>
