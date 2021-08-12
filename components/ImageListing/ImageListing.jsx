@@ -5,14 +5,8 @@ import Loader from '../Loader/Loader'
 import englishBadWords from 'naughty-words/en.json'
 import Navbar from '../Navbar/Navbar'
 import NoResults from '../NoResults/NoResults'
-import { getOptions } from './utils'
-import {
-	DEFAULT_QUERY,
-	PER_PAGE,
-	defaultOptions,
-	REPLACED_PROFANE_WORD,
-	SCROLL_THRESHOLD,
-} from '../../data/constants'
+import { getOptions, searchImages } from './utils'
+import { DEFAULT_QUERY, PER_PAGE, defaultOptions, SCROLL_THRESHOLD } from '../../data/constants'
 import { imageListingReducer } from './imageListingReducer'
 
 const ImageListing = ({ data }) => {
@@ -30,53 +24,19 @@ const ImageListing = ({ data }) => {
 		page: 2,
 	})
 	useEffect(() => {
-		getMoreImages()
+		;(async function () {
+			await getMoreImages()
+		})()
 	}, [query])
 
 	useEffect(() => {
-		;(function () {
-			const res = getOptions()
-			imageListingDispatch({ type: 'SET_OPTIONS', payload: res.slice(0, 5) })
-		})()
+		const res = getOptions()
+		imageListingDispatch({ type: 'SET_OPTIONS', payload: res.slice(0, 5) })
 	}, [])
-
-	const saveQueryToHistory = (query) => {
-		if (localStorage.getItem('history') === null) {
-			localStorage.setItem('history', JSON.stringify(defaultOptions))
-		}
-		let userHistory = JSON.parse(localStorage.getItem('history'))
-		const newHistoryItem = { value: query.toLowerCase(), label: query }
-		userHistory = userHistory.filter((item) => item.value != newHistoryItem.value)
-		userHistory.unshift(newHistoryItem)
-		localStorage.setItem('history', JSON.stringify(userHistory))
-		imageListingDispatch({ type: 'SET_OPTIONS', payload: userHistory.slice(0, 5) })
-		imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: newHistoryItem })
-	}
-	const searchImages = (e) => {
-		if (e.keyCode === 13) {
-			if (e.target.value === '') {
-				e.target.value = selectedOption.value
-			}
-			let englishBadWordsArray = []
-			for (let i in englishBadWords) {
-				englishBadWordsArray.push(englishBadWords[i])
-			}
-			if (englishBadWordsArray.find((item) => item === e.target.value)) {
-				e.target.value = REPLACED_PROFANE_WORD
-				imageListingDispatch({ type: 'SET_QUERY', payload: REPLACED_PROFANE_WORD })
-			} else {
-				imageListingDispatch({ type: 'SET_QUERY', payload: e.target.value })
-			}
-			imageListingDispatch({ type: 'RESET_IMAGES' })
-			saveQueryToHistory(e.target.value)
-			imageListingDispatch({ type: 'SET_HAS_MORE', payload: true })
-		}
-	}
 
 	const getMoreImages = async () => {
 		try {
 			imageListingDispatch({ type: 'SET_LOADING', payload: true })
-
 			const res = await fetch(
 				`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
 			)
@@ -97,7 +57,9 @@ const ImageListing = ({ data }) => {
 			<div className="flex justify-center">
 				<Navbar
 					isGridView={isGridView}
-					searchImages={searchImages}
+					searchImages={(e) =>
+						searchImages(e, selectedOption, imageListingDispatch, englishBadWords)
+					}
 					selectedOption={selectedOption}
 					setSelectedOption={(value) =>
 						imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: value })
