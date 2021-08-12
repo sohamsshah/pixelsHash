@@ -1,5 +1,5 @@
 import { MdiCalendarMonth } from '../../assets/svgs/CalendarIcon'
-import moment from 'moment'
+import { formatDate } from '../../utils/formatDate'
 import Location from './../Location/Location'
 import Tags from './../Tags/Tags'
 import { imageDetailsStrings } from '../../data/strings'
@@ -13,7 +13,7 @@ const ImageDetails = ({ image: { user, created_at, tags, description } }) => {
 			<div>
 				<span className="flex items-center">
 					<MdiCalendarMonth className="text-lg mr-1" /> {imageDetailsStrings.publishText}{' '}
-					{moment(created_at).format('MMM Do YYYY')}
+					{formatDate(created_at)}
 				</span>
 			</div>
 			{tags.length !== 0 && <Tags tags={tags} />}
