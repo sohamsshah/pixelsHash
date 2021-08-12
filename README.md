@@ -41,11 +41,9 @@ The Go-to place for High Quality, Beautiful and Picturesque 3-D matrices of Pixe
 
 ## **🚀 Demo**
 
-<!-- <a href="https://pixels-hash.vercel.app/" target="blank">
-<img src="public/assets/pixelsHash-cover.png" />
-</a> -->
+![image](https://user-images.githubusercontent.com/47717492/129268568-b11171ca-1132-4b39-b194-27004fd975c8.png)
 
-Try pixelsHash: [pixelsHash](https://pixels-hash.vercel.app/)
+### [pixelsHash](https://github.com/sohamsshah/pixelsHash) is LIVE!
 
 ## **🧐 Features**
 
@@ -62,7 +60,7 @@ There are multiple features implemented on pixelsHash to make high quality pictu
 -   ⤵️ **Download Pictures with a click**
 -   🙈 **Profanity Filter** (Clean search and content, always)
 
-## 🛠️ **Spinning Up Development Evnvironment**
+## 🛠️ **Spinning Up Development Environment**
 
 1. Clone the repository
 
@@ -82,10 +80,10 @@ cd pixelsHash
 yarn
 ```
 
-4. Create `.env` file in root and add your variables
+4. Create `.env.local` file in root and add your variables
 
 ```bash
-API_ACCESS_KEY='your unsplash api key here'
+NEXT_PUBIC_UNSPLASH_API_ACCESS_KEY='your unsplash api key here'
 ```
 
 5. Run pixelsHash
