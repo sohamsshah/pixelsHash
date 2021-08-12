@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Modal from '../Modal/Modal'
 import GridViewImage from '../GridViewImage/GridViewImage'
 import ListViewImage from '../ListViewImage/ListViewImage'
@@ -8,6 +8,10 @@ const ImageCard = ({ image, images, index, isGridView }) => {
 	const [currModalImageIndex, setCurrModalImageIndex] = useState(index)
 	const [showModal, setShowModal] = useState(false)
 	const [modalImage, setModalImage] = useState(images[index])
+	useEffect(() => {
+		setCurrModalImageIndex(index)
+		setModalImage(images[index])
+	}, [showModal])
 	return (
 		<>
 			{showModal && (

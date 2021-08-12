@@ -12,11 +12,11 @@ const ProfileDetails = ({ user: { name, id, profile_image, username, links } }) 
 			/>
 			<div>
 				<div>{name}</div>
-				<caption className="font-bold">
+				<span className="font-bold">
 					<a href={links.html} target="_blank" rel="noreferrer">
 						@{username}
 					</a>
-				</caption>
+				</span>
 			</div>
 		</div>
 	)
