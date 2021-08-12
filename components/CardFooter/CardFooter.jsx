@@ -1,10 +1,10 @@
 import { MdiDownload } from '../../assets/svgs/DownloadIcon'
-
+import { creatorDetailsStrings } from '../../data/strings'
 const CardFooter = ({ image }) => {
 	return (
 		<>
 			<div>
-				📷 Picture by{' '}
+				{creatorDetailsStrings.title}{' '}
 				<span className="font-bold">
 					<a href={image.user.links.html} rel="noreferrer" target="_blank">
 						{`${image.user.first_name}`}{' '}

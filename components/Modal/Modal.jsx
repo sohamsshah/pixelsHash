@@ -1,10 +1,9 @@
-import ProfileDetails from '../ProfileDetails/ProfileDetails'
-import SocialLinks from '../SocialLinks/SocialLinks'
 import ImageDetails from '../ImageDetails/ImageDetails'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
 import { MdiChevronLeft } from '../../assets/svgs/ChevLeftIcon'
 import { MdiChevronRight } from '../../assets/svgs/ChevRightIcon'
+import CreatorDetails from '../CreatorDetails/CreatorDetails'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }) => {
 	return (
@@ -52,18 +51,7 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 										<ImageDetails image={image} />
 									</div>
 									<div className="mb-5">
-										<div className="font-bold text-lg mb-2">Picture 📸 by</div>
-										<ProfileDetails user={image.user} />
-										<SocialLinks social={image.user.social} />
-
-										{image.user.bio ? (
-											<div>
-												<span className="font-bold text-lg mb-2">Bio</span>
-												<div>{image.user.bio}</div>
-											</div>
-										) : (
-											''
-										)}
+										<CreatorDetails image={image} />
 									</div>
 								</div>
 							</div>

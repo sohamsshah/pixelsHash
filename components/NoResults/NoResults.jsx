@@ -1,5 +1,6 @@
 import Alert from './../Alert/Alert'
 import noResults from './../../assets/images/noResults.gif'
+import { noResultsString } from '../../data/strings'
 const NoResults = () => {
 	return (
 		<div className="flex justify-center items-center flex-col">
@@ -7,7 +8,7 @@ const NoResults = () => {
 
 			<div>
 				<Alert color="white" bgColor="black">
-					Sorry, no results match your search! Try searching for other keywords 😅
+					{noResultsString}
 				</Alert>
 			</div>
 		</div>

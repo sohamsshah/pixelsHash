@@ -5,10 +5,9 @@ import Loader from '../Loader/Loader'
 import englishBadWords from 'naughty-words/en.json'
 import Navbar from '../Navbar/Navbar'
 import NoResults from '../NoResults/NoResults'
+import { DEFAULT_QUERY, PER_PAGE, defaultOptions } from '../../data/constants'
 
 const ImageListing = ({ data }) => {
-	const DEFAULT_QUERY = 'code'
-	const PER_PAGE = '10'
 	const [images, setImages] = useState(data.results)
 	const [hasMore, setHasMore] = useState(true)
 	const [page, setPage] = useState(2)
@@ -17,11 +16,6 @@ const ImageListing = ({ data }) => {
 	const [selectedOption, setSelectedOption] = useState(null)
 	const [options, setOptions] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
-	const defaultOptions = [
-		{ value: 'nature', label: 'Nature' },
-		{ value: 'people', label: 'People' },
-		{ value: 'wallpapers', label: 'Wallpapers' },
-	]
 
 	useEffect(() => {
 		getMoreImages()
@@ -112,7 +106,7 @@ const ImageListing = ({ data }) => {
 				next={getMoreImages}
 				hasMore={hasMore}
 				scrollThreshold={0.99}
-				loader={images.length < 6 && <Loader isGridView={isGridView} numberOfItems={3} />}
+				loader={images.length > 6 && <Loader isGridView={isGridView} numberOfItems={3} />}
 			>
 				<div className="flex m-3 justify-center">
 					<div
