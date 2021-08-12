@@ -41,11 +41,9 @@ The Go-to place for High Quality, Beautiful and Picturesque 3-D matrices of Pixe
 
 ## **🚀 Demo**
 
-<!-- <a href="https://pixels-hash.vercel.app/" target="blank">
-<img src="public/assets/pixelsHash-cover.png" />
-</a> -->
+![image](https://user-images.githubusercontent.com/47717492/129268568-b11171ca-1132-4b39-b194-27004fd975c8.png)
 
-Try pixelsHash: [pixelsHash](https://github.com/sohamsshah/pixelsHash)
+### [pixelsHash](https://github.com/sohamsshah/pixelsHash) is LIVE!
 
 ## **🧐 Features**
 
