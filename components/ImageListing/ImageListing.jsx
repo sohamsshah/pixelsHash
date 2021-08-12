@@ -90,8 +90,8 @@ const ImageListing = ({ data }) => {
 						))}
 					</div>
 				</div>
+				{images.length === 0 && !isLoading && <NoResults />}
 			</InfiniteScroll>
-			{images.length === 0 && !isLoading && <NoResults />}
 		</>
 	)
 }
