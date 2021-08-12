@@ -38,7 +38,7 @@ const ImageListing = ({ data }) => {
 		try {
 			imageListingDispatch({ type: 'SET_LOADING', payload: true })
 			const res = await fetch(
-				`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
+				`https://api.unsplash.com/search/photos?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
 			)
 			const newPosts = await res.json()
 			if (newPosts.total_pages < page) {
