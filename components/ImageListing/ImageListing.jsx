@@ -2,7 +2,6 @@ import { useEffect, useReducer } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import ImageCard from '../ImageCard/ImageCard'
 import Loader from '../Loader/Loader'
-import englishBadWords from 'naughty-words/en.json'
 import Navbar from '../Navbar/Navbar'
 import NoResults from '../NoResults/NoResults'
 import { getOptions, searchImages } from './utils'
@@ -21,7 +20,7 @@ const ImageListing = ({ data }) => {
 		selectedOption: null,
 		options: defaultOptions,
 		isLoading: false,
-		page: 2,
+		page: 2, // initialize with page 2 because page 1 was fetched via SSG
 	})
 	useEffect(() => {
 		;(async function () {
@@ -35,6 +34,7 @@ const ImageListing = ({ data }) => {
 	}, [])
 
 	const getMoreImages = async () => {
+		// make an API call to get more images
 		try {
 			imageListingDispatch({ type: 'SET_LOADING', payload: true })
 			const res = await fetch(
@@ -57,9 +57,7 @@ const ImageListing = ({ data }) => {
 			<div className="flex justify-center">
 				<Navbar
 					isGridView={isGridView}
-					searchImages={(e) =>
-						searchImages(e, selectedOption, imageListingDispatch, englishBadWords)
-					}
+					searchImages={(e) => searchImages(e, selectedOption, imageListingDispatch)}
 					selectedOption={selectedOption}
 					setSelectedOption={(value) =>
 						imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: value })
