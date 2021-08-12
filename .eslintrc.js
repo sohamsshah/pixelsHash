@@ -4,13 +4,12 @@ module.exports = {
       es6: true,
       node: true,
     },
-    "ignorePatterns": [ "**/server/*"],
+    "ignorePatterns": [ "**/src/*"],
     parser: "babel-eslint",
     extends: [
       "eslint:recommended",
       "plugin:react/recommended",
       "prettier",
-      "prettier/react",
     ],
     parserOptions: {
       ecmaVersion: "2017",

@@ -2,15 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+.card {
+	@apply relative m-3 overflow-hidden shadow-xl rounded-2xl;
+}
 .card-zoom {
-  @apply relative flex items-center justify-center m-3 overflow-hidden shadow-xl w-80 h-80 rounded-2xl;
+	@apply relative transition-all duration-500 ease-in-out flex items-center justify-center m-3 w-80;
 }
+
 .card-zoom-image {
-  @apply absolute w-full h-full transition-all duration-500 ease-in-out transform;
+	@apply max-h-72 lg:max-h-80 transform;
 }
-.card-zoom:hover .card-zoom-image {
-  @apply scale-150;
+
+.list-card-zoom {
+	@apply relative transition-all duration-500 ease-in-out flex items-center justify-center m-3 w-80 h-56 lg:w-100 lg:h-80;
 }
-.card-zoom:hover .card-zoom-text {
-  @apply scale-100;
+
+.card-zoom:hover {
+	@apply scale-105;
+}
+
+.list-card-zoom:hover {
+	@apply scale-105;
 }
