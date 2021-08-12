@@ -45,7 +45,7 @@ The Go-to place for High Quality, Beautiful and Picturesque 3-D matrices of Pixe
 <img src="public/assets/pixelsHash-cover.png" />
 </a> -->
 
-Try pixelsHash: [pixelsHash](https://github.com/sohamsshah/pixelsHash)
+Try pixelsHash: [pixelsHash](https://pixels-hash.vercel.app/)
 
 ## **🧐 Features**
 
@@ -105,16 +105,16 @@ You are all set! Open [localhost:3000](http://localhost:3000/) to see the app.
 ## **💻 Built with**
 
 -   [Next JS](https://nextjs.org/)
--   [React Lazy Load Component](https://www.npmjs.com/package/react-lazy-load-image-component) for lazy loading images
--   [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component) for smooth infinite scrolling
--   [React Loading Skeleton](https://www.npmjs.com/package/react-loading-skeleton) for effective skeleton loading
--   [Naughty Words](https://www.npmjs.com/package/naughty-words) for Profanity Check 🙏
--   [React Select](https://www.npmjs.com/package/react-select) for interactive search box
+-   [React Lazy Load Component](https://www.npmjs.com/package/react-lazy-load-image-component): for lazy loading images
+-   [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component): for smooth infinite scrolling
+-   [React Loading Skeleton](https://www.npmjs.com/package/react-loading-skeleton): for effective skeleton loading
+-   [Bad Words](https://www.npmjs.com/package/naughty-words): for Profanity Check 🙏
+-   [React Select](https://www.npmjs.com/package/react-select): for interactive search box
 -   [Vercel](http://vercel.com/): for hosting
 
 ## **🌈Upcoming Features**
 
-A lot of features are in the pipeline for pixelsHash. Some of them are:
+A lot of features are in the pipeline for pixelsHash. Some of them are
 
 -   🌘 **Dark mode**
 -   🥁 **Share Images**
