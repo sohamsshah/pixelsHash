@@ -62,7 +62,7 @@ There are multiple features implemented on pixelsHash to make high quality pictu
 -   ⤵️ **Download Pictures with a click**
 -   🙈 **Profanity Filter** (Clean search and content, always)
 
-## 🛠️ **Spinning Up Development Evnvironment**
+## 🛠️ **Spinning Up Development Environment**
 
 1. Clone the repository
 
@@ -82,10 +82,10 @@ cd pixelsHash
 yarn
 ```
 
-4. Create `.env` file in root and add your variables
+4. Create `.env.local` file in root and add your variables
 
 ```bash
-API_ACCESS_KEY='your unsplash api key here'
+NEXT_PUBIC_UNSPLASH_API_ACCESS_KEY='your unsplash api key here'
 ```
 
 5. Run pixelsHash
