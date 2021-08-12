@@ -1,12 +1,15 @@
 import ImageListing from '../components/ImageListing/ImageListing'
-
+import ScrollToTopButton from '../components/ScrollToTopButton/ScrollToTopButton'
 export default function Home({ imageData }) {
 	return (
 		<>
 			{imageData === null || imageData.errors ? (
 				<p className="text-center">Something went wrong.. Please try again later!</p>
 			) : (
-				<ImageListing data={imageData} />
+				<div>
+					<ImageListing data={imageData} />
+					<ScrollToTopButton />
+				</div>
 			)}
 		</>
 	)
