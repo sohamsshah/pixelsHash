@@ -6,7 +6,7 @@ import englishBadWords from 'naughty-words/en.json'
 import Navbar from '../Navbar/Navbar'
 import NoResults from '../NoResults/NoResults'
 
-const Images = ({ data }) => {
+const ImageListing = ({ data }) => {
 	const DEFAULT_QUERY = 'code'
 	const PER_PAGE = '10'
 	const [images, setImages] = useState(data.results)
@@ -137,4 +137,4 @@ const Images = ({ data }) => {
 	)
 }
 
-export default Images
+export default ImageListing

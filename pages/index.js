@@ -1,4 +1,4 @@
-import Images from '../components/images/Images'
+import ImageListing from '../components/ImageListing/ImageListing'
 
 export default function Home({ imageData }) {
 	return (
@@ -6,7 +6,7 @@ export default function Home({ imageData }) {
 			{imageData === null || imageData.errors ? (
 				<p className="text-center">Something went wrong.. Please try again later!</p>
 			) : (
-				<Images data={imageData} />
+				<ImageListing data={imageData} />
 			)}
 		</>
 	)
