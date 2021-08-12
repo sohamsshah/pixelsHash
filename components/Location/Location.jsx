@@ -4,7 +4,9 @@ const Location = ({ location }) => {
 	return (
 		<div className="flex items-center">
 			<MdiMapMarker className="mr-1 my-2" />
-			<div>{location}</div>
+			<div>
+				<span>{location}</span>
+			</div>
 		</div>
 	)
 }

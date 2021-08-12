@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import Modal from '../Modal/Modal'
-import { trackWindowScroll } from 'react-lazy-load-image-component'
 import GridViewImage from '../GridViewImage/GridViewImage'
 import ListViewImage from '../ListViewImage/ListViewImage'
 import { nextModalImage, prevModalImage } from './utils'
 
-const ImageCard = ({ image, images, index, scrollPosition, isGridView }) => {
+const ImageCard = ({ image, images, index, isGridView }) => {
 	const [currModalImageIndex, setCurrModalImageIndex] = useState(index)
 	const [showModal, setShowModal] = useState(false)
 	const [modalImage, setModalImage] = useState(images[index])
@@ -34,20 +33,12 @@ const ImageCard = ({ image, images, index, scrollPosition, isGridView }) => {
 				/>
 			)}
 			{isGridView ? (
-				<GridViewImage
-					image={image}
-					scrollPosition={scrollPosition}
-					setShowModal={setShowModal}
-				/>
+				<GridViewImage image={image} setShowModal={setShowModal} />
 			) : (
-				<ListViewImage
-					image={image}
-					scrollPosition={scrollPosition}
-					setShowModal={setShowModal}
-				/>
+				<ListViewImage image={image} setShowModal={setShowModal} />
 			)}
 		</>
 	)
 }
 
-export default trackWindowScroll(ImageCard)
+export default ImageCard

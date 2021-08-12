@@ -3,7 +3,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css'
 import CardFooter from '../CardFooter/CardFooter'
 import ImageDetails from '../ImageDetails/ImageDetails'
 
-const ListViewImage = ({ image, setShowModal, scrollPosition }) => {
+const ListViewImage = ({ image, setShowModal }) => {
 	return (
 		<div className="card md:flex-row flex-col flex md:justify-around items-center">
 			<div onClick={() => setShowModal(true)} className="list-card-zoom cursor-zoom-in">
@@ -11,7 +11,6 @@ const ListViewImage = ({ image, setShowModal, scrollPosition }) => {
 					effect="blur"
 					alt={image.alt_description}
 					key={image.user.id}
-					scrollPosition={scrollPosition}
 					className="card-zoom-image"
 					src={image.urls.regular}
 				/>

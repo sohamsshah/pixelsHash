@@ -1,6 +1,7 @@
 import { MdiTwitter } from './../../assets/svgs/TwitterIcon'
 import { MdiInstagram } from './../../assets/svgs/InstagramIcon'
 import { MdiWeb } from './../../assets/svgs/InternetIcon'
+import { socialLinksStrings } from './../../data/strings'
 
 const SocialLinks = ({ social }) => {
 	return (
@@ -10,7 +11,7 @@ const SocialLinks = ({ social }) => {
 					<a
 						target="_blank"
 						rel="noreferrer"
-						href={`https://www.instagram.com/${social.instagram_username}`}
+						href={`${socialLinksStrings.instagram}${social.instagram_username}`}
 					>
 						<MdiInstagram className="text-3xl mr-2" />
 					</a>
@@ -22,7 +23,7 @@ const SocialLinks = ({ social }) => {
 					<a
 						target="_blank"
 						rel="noreferrer"
-						href={`https://www.twitter.com/${social.twitter_username}`}
+						href={`${socialLinksStrings.twitter}${social.twitter_username}`}
 					>
 						<MdiTwitter className="text-3xl mr-2" />
 					</a>

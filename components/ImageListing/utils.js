@@ -1,7 +1,7 @@
 import { defaultOptions, REPLACED_PROFANE_WORD } from '../../data/constants'
 import englishBadWords from 'naughty-words/en.json'
 export const getOptions = () => {
-	// get select options from local storage history 
+	// get select options from local storage history
 	const history = localStorage.getItem('history')
 	if (history === null) {
 		return defaultOptions
@@ -26,7 +26,8 @@ const saveQueryToHistory = (query, imageListingDispatch) => {
 }
 
 export const searchImages = (e, selectedOption, imageListingDispatch) => {
-	if (e.keyCode === 13) { // if enter is pressed
+	if (e.keyCode === 13) {
+		// if enter is pressed
 		if (e.target.value === '') {
 			e.target.value = selectedOption.value
 		}
@@ -35,7 +36,7 @@ export const searchImages = (e, selectedOption, imageListingDispatch) => {
 			e.target.value = REPLACED_PROFANE_WORD
 			imageListingDispatch({ type: 'SET_QUERY', payload: REPLACED_PROFANE_WORD })
 		} else {
-			// search input query 
+			// search input query
 			imageListingDispatch({ type: 'SET_QUERY', payload: e.target.value })
 		}
 		// empty images array in state and add to history

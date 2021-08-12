@@ -4,6 +4,7 @@ import { MdiGrid } from '../../assets/svgs/GridIcon'
 import pixelsHashLogo from './../../assets/images/pixelsHashLogo.png'
 import { MdiGithub } from '../../assets/svgs/GithubIcon'
 import Image from 'next/image'
+import { repositoryLink } from '../../data/strings'
 
 const Navbar = ({
 	isGridView,
@@ -37,7 +38,7 @@ const Navbar = ({
 					<a
 						target="_blank"
 						rel="noreferrer"
-						href="https://github.com/sohamsshah/pixelsHash/"
+						href={repositoryLink}
 						className="text-center text-2xl mx-2"
 					>
 						<MdiGithub />

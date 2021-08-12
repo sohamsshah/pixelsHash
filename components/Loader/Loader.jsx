@@ -36,7 +36,7 @@ const ListViewLoader = ({ numberOfItems }) => {
 	return (
 		<div className="flex m-3 justify-center">
 			<div className="flex flex-wrap gap-2 justify-center flex-col">
-				{[...Array(numberOfItems)].map((e, i) => (
+				{[...Array(numberOfItems)].map((_, i) => (
 					<div
 						key={i}
 						className="card md:flex-row flex-col flex md:justify-around items-center"
