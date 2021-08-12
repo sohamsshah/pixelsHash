@@ -5,7 +5,7 @@ import { MdiChevronRight } from '../../assets/svgs/ChevRightIcon'
 import CreatorDetails from '../CreatorDetails/CreatorDetails'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
-const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }) => {
+const Modal = ({ image, closeModal, prevModalImage, nextModalImage }) => {
 	return (
 		<>
 			<div className="absolute inset-0 flex items-center justify-center py-12">
@@ -20,7 +20,7 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 					</button>
 					<div>
 						<button
-							onClick={handlePrevModalImage}
+							onClick={prevModalImage}
 							className="fixed lg:bottom-80 lg:left-24 left-12 bottom-0.5 text-4xl text-white p-5 font-bold z-20"
 						>
 							<MdiChevronLeft />
@@ -28,7 +28,7 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 					</div>
 					<div>
 						<button
-							onClick={handleNextModalImage}
+							onClick={nextModalImage}
 							className="fixed lg:bottom-80 lg:right-24 right-12 bottom-0.5 text-4xl text-white p-5 font-bold z-20"
 						>
 							<MdiChevronRight />

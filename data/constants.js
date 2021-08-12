@@ -5,3 +5,5 @@ export const defaultOptions = [
 	{ value: 'people', label: 'People' },
 	{ value: 'wallpapers', label: 'Wallpapers' },
 ]
+export const REPLACED_PROFANE_WORD = 'bad word'
+export const SCROLL_THRESHOLD = 0.99

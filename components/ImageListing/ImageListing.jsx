@@ -1,40 +1,45 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useReducer } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import ImageCard from '../ImageCard/ImageCard'
 import Loader from '../Loader/Loader'
 import englishBadWords from 'naughty-words/en.json'
 import Navbar from '../Navbar/Navbar'
 import NoResults from '../NoResults/NoResults'
-import { DEFAULT_QUERY, PER_PAGE, defaultOptions } from '../../data/constants'
+import { getOptions } from './utils'
+import {
+	DEFAULT_QUERY,
+	PER_PAGE,
+	defaultOptions,
+	REPLACED_PROFANE_WORD,
+	SCROLL_THRESHOLD,
+} from '../../data/constants'
+import { imageListingReducer } from './imageListingReducer'
 
 const ImageListing = ({ data }) => {
-	const [images, setImages] = useState(data.results)
-	const [hasMore, setHasMore] = useState(true)
-	const [page, setPage] = useState(2)
-	const [query, setQuery] = useState(DEFAULT_QUERY)
-	const [isGridView, setIsGridView] = useState(false)
-	const [selectedOption, setSelectedOption] = useState(null)
-	const [options, setOptions] = useState(null)
-	const [isLoading, setIsLoading] = useState(false)
-
+	const [
+		{ images, hasMore, options, page, query, isGridView, selectedOption, isLoading },
+		imageListingDispatch,
+	] = useReducer(imageListingReducer, {
+		images: [...data.results],
+		hasMore: true,
+		query: DEFAULT_QUERY,
+		isGridView: true,
+		selectedOption: null,
+		options: defaultOptions,
+		isLoading: false,
+		page: 2,
+	})
 	useEffect(() => {
 		getMoreImages()
 	}, [query])
 
 	useEffect(() => {
-		;(async function () {
-			const res = await getOptions()
-			setOptions(res.slice(0, 5))
+		;(function () {
+			const res = getOptions()
+			imageListingDispatch({ type: 'SET_OPTIONS', payload: res.slice(0, 5) })
 		})()
 	}, [])
 
-	const getOptions = async () => {
-		const history = await localStorage.getItem('history')
-		if (history === null) {
-			return defaultOptions
-		}
-		return JSON.parse(history)
-	}
 	const saveQueryToHistory = (query) => {
 		if (localStorage.getItem('history') === null) {
 			localStorage.setItem('history', JSON.stringify(defaultOptions))
@@ -44,49 +49,47 @@ const ImageListing = ({ data }) => {
 		userHistory = userHistory.filter((item) => item.value != newHistoryItem.value)
 		userHistory.unshift(newHistoryItem)
 		localStorage.setItem('history', JSON.stringify(userHistory))
-		setOptions(userHistory.slice(0, 5))
-		setSelectedOption(newHistoryItem)
+		imageListingDispatch({ type: 'SET_OPTIONS', payload: userHistory.slice(0, 5) })
+		imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: newHistoryItem })
 	}
 	const searchImages = (e) => {
 		if (e.keyCode === 13) {
 			if (e.target.value === '') {
 				e.target.value = selectedOption.value
 			}
-			console.log(typeof englishBadWords)
 			let englishBadWordsArray = []
 			for (let i in englishBadWords) {
 				englishBadWordsArray.push(englishBadWords[i])
 			}
 			if (englishBadWordsArray.find((item) => item === e.target.value)) {
-				e.target.value = 'bad word'
-				setQuery('bad word')
+				e.target.value = REPLACED_PROFANE_WORD
+				imageListingDispatch({ type: 'SET_QUERY', payload: REPLACED_PROFANE_WORD })
 			} else {
-				setQuery(e.target.value)
+				imageListingDispatch({ type: 'SET_QUERY', payload: e.target.value })
 			}
-			setImages([])
-			setPage(1)
+			imageListingDispatch({ type: 'RESET_IMAGES' })
 			saveQueryToHistory(e.target.value)
-			setHasMore(true)
+			imageListingDispatch({ type: 'SET_HAS_MORE', payload: true })
 		}
 	}
 
 	const getMoreImages = async () => {
 		try {
-			setIsLoading(true)
+			imageListingDispatch({ type: 'SET_LOADING', payload: true })
+
 			const res = await fetch(
 				`https://api.unsplash.com/search/photos?client_id=${process.env.API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
 			)
 			const newPosts = await res.json()
 			if (newPosts.total_pages < page) {
-				setHasMore(false)
+				imageListingDispatch({ type: 'SET_HAS_MORE', payload: false })
 			} else {
-				setImages((images) => [...images, ...newPosts.results])
-				setPage(page + 1)
+				imageListingDispatch({ type: 'ADD_MORE_IMAGES', payload: newPosts.results })
 			}
 		} catch (error) {
 			console.log(error.response)
 		} finally {
-			setIsLoading(false)
+			imageListingDispatch({ type: 'SET_LOADING', payload: false })
 		}
 	}
 	return (
@@ -96,16 +99,18 @@ const ImageListing = ({ data }) => {
 					isGridView={isGridView}
 					searchImages={searchImages}
 					selectedOption={selectedOption}
-					setSelectedOption={setSelectedOption}
+					setSelectedOption={(value) =>
+						imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: value })
+					}
 					options={options}
-					setIsGridView={setIsGridView}
+					imageListingDispatch={imageListingDispatch}
 				/>
 			</div>
 			<InfiniteScroll
 				dataLength={images.length}
 				next={getMoreImages}
 				hasMore={hasMore}
-				scrollThreshold={0.99}
+				scrollThreshold={SCROLL_THRESHOLD}
 				loader={images.length > 6 && <Loader isGridView={isGridView} numberOfItems={3} />}
 			>
 				<div className="flex m-3 justify-center">
