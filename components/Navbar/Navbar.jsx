@@ -4,6 +4,7 @@ import { MdiGrid } from '../../assets/svgs/GridIcon'
 import pixelsHashLogo from './../../assets/images/pixelsHashLogo.png'
 import { MdiGithub } from '../../assets/svgs/GithubIcon'
 import Image from 'next/image'
+import { repositoryLink } from '../../data/strings'
 
 const Navbar = ({
 	isGridView,
@@ -11,7 +12,7 @@ const Navbar = ({
 	selectedOption,
 	setSelectedOption,
 	options,
-	setIsGridView,
+	imageListingDispatch,
 }) => {
 	return (
 		<div className="flex flex-col md:flex-row justify-between md:w-3/4 w-full items-center">
@@ -30,14 +31,14 @@ const Navbar = ({
 				<div className="flex items-center">
 					<button
 						className="text-center text-2xl mx-2"
-						onClick={() => setIsGridView((prev) => !prev)}
+						onClick={() => imageListingDispatch({ type: 'TOGGLE_VIEW' })}
 					>
 						{isGridView ? <MdiFormatListBulletedSquare /> : <MdiGrid />}
 					</button>
 					<a
 						target="_blank"
 						rel="noreferrer"
-						href="https://github.com/sohamsshah/pixelsHash/"
+						href={repositoryLink}
 						className="text-center text-2xl mx-2"
 					>
 						<MdiGithub />

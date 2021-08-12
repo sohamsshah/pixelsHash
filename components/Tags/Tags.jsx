@@ -4,7 +4,7 @@ const Tags = ({ tags }) => {
 			{tags.map((tag, index) => {
 				return (
 					<div key={index} className="mr-2 my-1 border p-1">
-						{tag.title}
+						<span>{tag.title}</span>
 					</div>
 				)
 			})}

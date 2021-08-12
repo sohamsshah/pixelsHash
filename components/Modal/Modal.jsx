@@ -1,15 +1,11 @@
-import Location from './../Location/Location'
-import Tags from './../Tags/Tags'
-import ProfileDetails from '../ProfileDetails/ProfileDetails'
-import SocialLinks from '../SocialLinks/SocialLinks'
-import { MdiCalendarMonth } from '../../assets/svgs/CalendarIcon'
-import moment from 'moment'
+import ImageDetails from '../ImageDetails/ImageDetails'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
 import { MdiChevronLeft } from '../../assets/svgs/ChevLeftIcon'
 import { MdiChevronRight } from '../../assets/svgs/ChevRightIcon'
+import CreatorDetails from '../CreatorDetails/CreatorDetails'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
-const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }) => {
+const Modal = ({ image, closeModal, prevModalImage, nextModalImage }) => {
 	return (
 		<>
 			<div className="absolute inset-0 flex items-center justify-center py-12">
@@ -24,7 +20,7 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 					</button>
 					<div>
 						<button
-							onClick={handlePrevModalImage}
+							onClick={prevModalImage}
 							className="fixed lg:bottom-80 lg:left-24 left-12 bottom-0.5 text-4xl text-white p-5 font-bold z-20"
 						>
 							<MdiChevronLeft />
@@ -32,7 +28,7 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 					</div>
 					<div>
 						<button
-							onClick={handleNextModalImage}
+							onClick={nextModalImage}
 							className="fixed lg:bottom-80 lg:right-24 right-12 bottom-0.5 text-4xl text-white p-5 font-bold z-20"
 						>
 							<MdiChevronRight />
@@ -52,35 +48,10 @@ const Modal = ({ image, closeModal, handlePrevModalImage, handleNextModalImage }
 								</div>
 								<div className="overflow-y-auto max-h-56 lg:max-h-full lg:w-96 flex flex-col justify-start lg:px-10 py-5 lg:py-0">
 									<div className="mb-5">
-										<div className="font-bold text-lg">About this Image</div>
-										<span>{image.description}</span>
-										{image.user.location !== null ? (
-											<Location location={image.user.location} />
-										) : (
-											''
-										)}
-										<div>
-											<span className="flex items-center">
-												<MdiCalendarMonth className="text-lg mr-1" />{' '}
-												Published on{' '}
-												{moment(image.created_at).format('MMM Do YYYY')}
-											</span>
-										</div>
-										{image.tags.length !== 0 ? <Tags tags={image.tags} /> : ''}
+										<ImageDetails image={image} />
 									</div>
 									<div className="mb-5">
-										<div className="font-bold text-lg mb-2">Picture 📸 by</div>
-										<ProfileDetails user={image.user} />
-										<SocialLinks social={image.user.social} />
-
-										{image.user.bio ? (
-											<div>
-												<span className="font-bold text-lg mb-2">Bio</span>
-												<div>{image.user.bio}</div>
-											</div>
-										) : (
-											''
-										)}
+										<CreatorDetails image={image} />
 									</div>
 								</div>
 							</div>
