@@ -8,6 +8,7 @@ const GridViewImage = ({ image, setShowModal }) => {
 			<div className="h-full flex flex-col items-center justify-between">
 				<div onClick={() => setShowModal(true)} className="h-full card-zoom cursor-zoom-in">
 					<LazyLoadImage
+						placeholderSrc="https://icon-library.com/images/loading-icon-animated-gif/loading-icon-animated-gif-19.jpg"
 						effect="blur"
 						alt={image.alt_description}
 						key={image.user.id}
