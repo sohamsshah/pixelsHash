@@ -39,7 +39,7 @@ export default function Home({ imageData }) {
 				<meta name="msapplication-TileImage" content="/ms-icon-144x144.png"></meta>
 				<meta name="theme-color" content="#ffffff"></meta>
 			</Head>
-			<div>
+			<main>
 				{imageData === null || imageData.errors ? (
 					<p className="text-center">Something went wrong.. Please try again later!</p>
 				) : (
@@ -48,7 +48,7 @@ export default function Home({ imageData }) {
 						<ScrollToTopButton />
 					</div>
 				)}
-			</div>
+			</main>
 		</>
 	)
 }

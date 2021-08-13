@@ -14,6 +14,7 @@ const SocialLinks = ({ social }) => {
 						href={`${socialLinksStrings.instagram}${social.instagram_username}`}
 					>
 						<MdiInstagram className="text-3xl mr-2" />
+						<span className="sr-only">Instagram Link</span>
 					</a>
 				</div>
 			)}
@@ -26,6 +27,7 @@ const SocialLinks = ({ social }) => {
 						href={`${socialLinksStrings.twitter}${social.twitter_username}`}
 					>
 						<MdiTwitter className="text-3xl mr-2" />
+						<span className="sr-only">Twitter Link</span>
 					</a>
 				</div>
 			)}
@@ -33,6 +35,7 @@ const SocialLinks = ({ social }) => {
 				<div>
 					<a target="_blank" rel="noreferrer" href={`${social.portfolio_url}`}>
 						<MdiWeb className="text-3xl mr-2" />
+						<span className="sr-only">Web Link</span>
 					</a>
 				</div>
 			)}
