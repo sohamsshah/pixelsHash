@@ -20,6 +20,7 @@
 <a href="https://github.com/sohamsshah/pixelsHash/pulls" target="blank">
 <img src="https://img.shields.io/github/issues-pr/sohamsshah/pixelsHash?style=flat-square" alt="pixelsHash pull-requests"/>
 </a>
+<a href="https://twitter.com/intent/tweet?text=Woah!%20This%20is%20cool.%20Check%20it%20out&url=https%3A%2F%2Fgithub.com%2Fsohamsshah%2FpixelsHash"><img alt="Twitter" src="https://img.shields.io/twitter/url?color=grey&label=Tweet%20this&logo=twitter&logoColor=dark-blue&style=flat-square&url=https%3A%2F%2Fgithub.com%2Fsohamsshah%2FpixelsHash"></a>
 
 </p>
 
@@ -41,7 +42,7 @@ The Go-to place for High Quality, Beautiful and Picturesque 3-D matrices of Pixe
 
 ## **🚀 Demo**
 
-![image](https://user-images.githubusercontent.com/47717492/129268568-b11171ca-1132-4b39-b194-27004fd975c8.png)
+![gif](/public/demo.gif)
 
 ### [pixelsHash](https://github.com/sohamsshah/pixelsHash) is LIVE!
 
@@ -157,3 +158,7 @@ This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) fi
 O Stargazer✨! Can you ⭐️ this too? </b>
 
 </h3>
+
+<p align="center">
+<a href="#pixelsHash-📸"><b>Back to top</b></a>
+</p>
