@@ -60,6 +60,10 @@ There are multiple features implemented on pixelsHash to make high quality pictu
 -   ⤵️ **Download Pictures with a click**
 -   🙈 **Profanity Filter** (Clean search and content, always)
 
+## **⚡Lighthouse Report** 
+![image](https://user-images.githubusercontent.com/47717492/129396568-7faa5f0e-769a-410b-9d36-c4f740a52c36.png)
+
+
 ## 🛠️ **Spinning Up Development Environment**
 
 1. Clone the repository
