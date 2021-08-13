@@ -75,7 +75,7 @@ const ImageListing = ({ data }) => {
 			>
 				<div className="flex m-3 justify-center">
 					<div
-						className={`flex flex-wrap gap-2 justify-center ${
+						className={`flex flex-wrap gap-4 justify-center ${
 							!isGridView ? 'flex-col' : ''
 						}`}
 					>

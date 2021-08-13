@@ -1,9 +1,8 @@
 import ImageDetails from '../ImageDetails/ImageDetails'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
+import Image from 'next/image'
 import { MdiChevronLeft } from '../../assets/svgs/ChevLeftIcon'
 import { MdiChevronRight } from '../../assets/svgs/ChevRightIcon'
 import CreatorDetails from '../CreatorDetails/CreatorDetails'
-import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const Modal = ({ image, closeModal, prevModalImage, nextModalImage }) => {
 	return (
@@ -38,12 +37,13 @@ const Modal = ({ image, closeModal, prevModalImage, nextModalImage }) => {
 						<div className="lg:m-20 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
 							<div className="lg:flex p-6">
 								<div className="flex justify-center">
-									<LazyLoadImage
-										effect="blur"
-										alt={image.alt_description}
+									<Image
+										src={image.urls.regular}
 										key={image.user.id}
 										className="lg:w-100 lg:h-100 max-h-64 lg:max-h-full w-full"
-										src={image.urls.regular}
+										alt={image.alt_description}
+										width={750}
+										height={562.5}
 									/>
 								</div>
 								<div className="overflow-y-auto max-h-56 lg:max-h-full lg:w-96 flex flex-col justify-start lg:px-10 py-5 lg:py-0">
