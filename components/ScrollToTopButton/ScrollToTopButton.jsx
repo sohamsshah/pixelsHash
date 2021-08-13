@@ -24,6 +24,7 @@ const ScrollToTopButton = () => {
 	return (
 		<div>
 			<button
+				aria-label="scroll to top button"
 				className={`${
 					!visible && 'hidden'
 				}  duration-500 ease-in-out fixed z-50 bg-black text-white rounded-full h-16 w-16 flex items-center justify-center bottom-2 right-2 cursor-pointer`}

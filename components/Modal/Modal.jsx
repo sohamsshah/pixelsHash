@@ -10,6 +10,7 @@ const Modal = ({ image, closeModal, prevModalImage, nextModalImage }) => {
 			<div className="absolute inset-0 flex items-center justify-center py-12">
 				<div className="justify-center items-center flex max-h-full overflow-auto fixed inset-0 z-50 outline-none focus:outline-none">
 					<button
+						aria-label="close button"
 						className="fixed z-50 top-2 left-2 p-1 z-60 ml-auto border-0 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
 						onClick={closeModal}
 					>
@@ -19,6 +20,7 @@ const Modal = ({ image, closeModal, prevModalImage, nextModalImage }) => {
 					</button>
 					<div>
 						<button
+							aria-label="navigate previous image"
 							onClick={prevModalImage}
 							className="fixed lg:bottom-80 lg:left-24 left-12 bottom-0.5 text-4xl text-white p-5 font-bold z-20"
 						>
@@ -27,6 +29,7 @@ const Modal = ({ image, closeModal, prevModalImage, nextModalImage }) => {
 					</div>
 					<div>
 						<button
+							aria-label="navigate next image"
 							onClick={nextModalImage}
 							className="fixed lg:bottom-80 lg:right-24 right-12 bottom-0.5 text-4xl text-white p-5 font-bold z-20"
 						>
