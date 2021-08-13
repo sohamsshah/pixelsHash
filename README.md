@@ -160,5 +160,5 @@ O Stargazer✨! Can you ⭐️ this too? </b>
 </h3>
 
 <p align="center">
-<a href="#pixelsHash-📸"><b>Back to top</b></a>
+<a href="#pixelsHash-"><b>Back to top</b></a>
 </p>
