@@ -12,9 +12,10 @@ const CardFooter = ({ image }) => {
 				</span>
 			</div>
 			<div>
-				<a href={`${image.links.download}?force=true`}>
+				<a aria-label="Download Link" href={`${image.links.download}?force=true`}>
 					{' '}
 					<MdiDownload className="text-2xl" />{' '}
+					<span className="sr-only">Download Button</span>
 				</a>
 			</div>
 		</>
