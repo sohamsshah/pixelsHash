@@ -6,8 +6,15 @@ export default function Home({ imageData }) {
 		<>
 			<Head>
 				<title>pixelsHash</title>
-				<meta name="description" content="pixelsHash: The Go-to place for High Quality, Beautiful and Picturesque 3-D matrices of Pixels - hashed perfectly for you to describe your thoughts in high resolution! 🖼⚡ You can view, search and download everything that you want! Powered By Unsplash!"></meta>
-				<meta property="og:title" content="pixelsHash: 📸 pixels turned into life" key="title"></meta>
+				<meta
+					name="description"
+					content="pixelsHash: The Go-to place for High Quality, Beautiful and Picturesque 3-D matrices of Pixels - hashed perfectly for you to describe your thoughts in high resolution! 🖼⚡ You can view, search and download everything that you want! Powered By Unsplash!"
+				></meta>
+				<meta
+					property="og:title"
+					content="pixelsHash: 📸 pixels turned into life"
+					key="title"
+				></meta>
 				<meta property="og:image" content="/pixelsHashLogo.png"></meta>
 				<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
 				<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
