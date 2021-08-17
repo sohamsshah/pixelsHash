@@ -5,7 +5,6 @@ import pixelsHashLogo from './../../assets/images/pixelsHashLogo.png'
 import { MdiGithub } from '../../assets/svgs/GithubIcon'
 import Image from 'next/image'
 import { repositoryLink } from '../../data/strings'
-
 const Navbar = ({
 	isGridView,
 	searchImages,
@@ -22,6 +21,7 @@ const Navbar = ({
 					type="input"
 					for="select"
 					isClearable
+					placeholder="🔍 Search Images"
 					value={selectedOption}
 					onKeyDown={(e) => searchImages(e)}
 					onChange={(value) => setSelectedOption(value)}
