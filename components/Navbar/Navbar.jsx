@@ -5,6 +5,8 @@ import pixelsHashLogo from './../../assets/images/pixelsHashLogo.png'
 import { MdiGithub } from '../../assets/svgs/GithubIcon'
 import Image from 'next/image'
 import { repositoryLink } from '../../data/strings'
+import DarkModeToggleButton from './../DarkModeToggleButton/DarkModeToggleButton'
+import { useTheme } from 'next-themes'
 const Navbar = ({
 	isGridView,
 	searchImages,
@@ -13,6 +15,7 @@ const Navbar = ({
 	options,
 	imageListingDispatch,
 }) => {
+	const { theme } = useTheme()
 	return (
 		<div className="flex flex-col md:flex-row justify-between md:w-3/4 w-full items-center">
 			<Image width="150" height="150" src={pixelsHashLogo} alt="PixelsHash Logo" />
@@ -29,6 +32,24 @@ const Navbar = ({
 					id="input-value"
 					className="w-80 m-3"
 					formatCreateLabel={() => `Search this...`}
+					theme={(boxTheme) => {
+						if (theme === 'dark') {
+							return {
+								...boxTheme,
+								colors: {
+									...boxTheme.colors,
+									primary50: '#4B5563',
+									primary25: '#4B5563',
+									neutral20: '#4B5563',
+									neutral50: '#4B5563',
+									neutral0: '#121212',
+									neutral80: 'white',
+									neutral30: '#4B5563',
+								},
+							}
+						}
+						return { ...boxTheme }
+					}}
 				/>
 				<div className="flex items-center">
 					<button
@@ -49,6 +70,7 @@ const Navbar = ({
 							<span className="sr-only">Github Link</span>
 						</a>
 					</button>
+					<DarkModeToggleButton />
 				</div>
 			</div>
 		</div>

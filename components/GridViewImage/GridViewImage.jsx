@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const GridViewImage = ({ image, setShowModal }) => {
 	return (
-		<div className="card items-start flex-col flex justify-between">
+		<div className="card items-start flex-col flex justify-between dark:border-gray-600 border ">
 			<div className="h-full flex flex-col items-center justify-between">
 				<div onClick={() => setShowModal(true)} className="h-full card-zoom cursor-zoom-in">
 					<div className="m-2">

@@ -4,7 +4,7 @@ import ImageDetails from '../ImageDetails/ImageDetails'
 
 const ListViewImage = ({ image, setShowModal }) => {
 	return (
-		<div className="card md:flex-row flex-col flex md:justify-around items-center">
+		<div className="card md:flex-row flex-col flex md:justify-around items-center dark:border-gray-600 border">
 			<div onClick={() => setShowModal(true)} className="list-card-zoom cursor-zoom-in">
 				<div className="m-2">
 					<Image
