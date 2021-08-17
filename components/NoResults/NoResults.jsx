@@ -5,7 +5,13 @@ import { noResultsString } from '../../data/strings'
 const NoResults = () => {
 	return (
 		<div className="flex justify-center items-center flex-col">
-			<Image className="w-96 h-96" height={400} width={400} src={noResults} />
+			<Image
+				className="w-96 h-96"
+				alt="no results image"
+				height={400}
+				width={400}
+				src={noResults}
+			/>
 
 			<div>
 				<Alert color="white" bgColor="black">

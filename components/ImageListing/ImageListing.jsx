@@ -1,11 +1,11 @@
 import { useEffect, useReducer } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
+import InfiniteScroll from '../InfiniteScroll/InfiniteScroll'
 import ImageCard from '../ImageCard/ImageCard'
 import Loader from '../Loader/Loader'
 import Navbar from '../Navbar/Navbar'
 import NoResults from '../NoResults/NoResults'
 import { getOptions, searchImages } from './utils'
-import { DEFAULT_QUERY, PER_PAGE, defaultOptions, SCROLL_THRESHOLD } from '../../data/constants'
+import { DEFAULT_QUERY, PER_PAGE, defaultOptions, VISIBILITY_THRESHOLD } from '../../data/constants'
 import { imageListingReducer } from './imageListingReducer'
 
 const ImageListing = ({ data }) => {
@@ -66,12 +66,13 @@ const ImageListing = ({ data }) => {
 					imageListingDispatch={imageListingDispatch}
 				/>
 			</div>
+
 			<InfiniteScroll
 				dataLength={images.length}
-				next={getMoreImages}
 				hasMore={hasMore}
-				scrollThreshold={SCROLL_THRESHOLD}
+				next={getMoreImages}
 				loader={images.length > 6 && <Loader isGridView={isGridView} numberOfItems={3} />}
+				threshold={VISIBILITY_THRESHOLD}
 			>
 				<div className="flex m-3 justify-center">
 					<div
