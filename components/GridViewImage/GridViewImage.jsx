@@ -11,7 +11,9 @@ const GridViewImage = ({ image, setShowModal }) => {
 							src={image.urls.regular}
 							key={image.user.id}
 							className="lg:w-100 lg:h-100 max-h-64 lg:max-h-full w-full"
-							alt={image.alt_description}
+							alt={
+								image.alt_description ? image.alt_description : 'High Quality Image'
+							}
 							width={750}
 							height={562.5}
 						/>
