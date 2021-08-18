@@ -1,5 +1,6 @@
 import { defaultOptions, REPLACED_PROFANE_WORD } from '../../data/constants'
 import englishBadWords from 'naughty-words/en.json'
+
 export const getOptions = () => {
 	// get select options from local storage history
 	const history = localStorage.getItem('history')
@@ -25,11 +26,14 @@ const saveQueryToHistory = (query, imageListingDispatch) => {
 	imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: newHistoryItem })
 }
 
-export const searchImages = (e, selectedOption, imageListingDispatch) => {
-	if (e.keyCode === 13) {
+export const searchImages = async (e, selectedOption, imageListingDispatch) => {
+	// if enter is pressed
+	if (e.keyCode === 13) {	
 		// if enter is pressed
 		if (e.target.value === '') {
-			e.target.value = selectedOption.value
+			if(selectedOption !== null){
+				e.target.value = selectedOption.value
+			}
 		}
 		if (isBadWord(e.target.value)) {
 			// Replace search value with REPLACED word and search for that query instead

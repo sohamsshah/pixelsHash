@@ -6,4 +6,4 @@ export const defaultOptions = [
 	{ value: 'wallpapers', label: 'Wallpapers' },
 ]
 export const REPLACED_PROFANE_WORD = 'bad word'
-export const VISIBILITY_THRESHOLD = 0.5
+export const VISIBILITY_THRESHOLD = 0.2

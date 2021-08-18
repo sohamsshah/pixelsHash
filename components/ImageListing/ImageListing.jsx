@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useRef } from 'react'
 import InfiniteScroll from '../InfiniteScroll/InfiniteScroll'
 import ImageCard from '../ImageCard/ImageCard'
 import Loader from '../Loader/Loader'
@@ -10,6 +10,7 @@ import { imageListingReducer } from './imageListingReducer'
 import axios from 'axios'
 
 const ImageListing = ({ data }) => {
+	const isMounted = useRef(false)
 	const [
 		{ images, hasMore, options, page, query, isGridView, selectedOption, isLoading },
 		imageListingDispatch,
@@ -23,16 +24,22 @@ const ImageListing = ({ data }) => {
 		isLoading: false,
 		page: 2, // initialize with page 2 because page 1 was fetched via SSG
 	})
-	useEffect(() => {
-		;(async function () {
-			await getMoreImages()
-		})()
-	}, [query])
 
 	useEffect(() => {
 		const res = getOptions()
 		imageListingDispatch({ type: 'SET_OPTIONS', payload: res.slice(0, 5) })
 	}, [])
+
+	useEffect(() => {
+		;(async function () {
+			if (isMounted.current) {
+				console.log(query)
+				await getMoreImages()
+			} else {
+				isMounted.current = true
+			}
+		})()
+	}, [query])
 
 	const getMoreImages = async () => {
 		// make an API call to get more images
@@ -46,6 +53,7 @@ const ImageListing = ({ data }) => {
 				if (newPosts.total_pages < page) {
 					imageListingDispatch({ type: 'SET_HAS_MORE', payload: false })
 				} else {
+					imageListingDispatch({ type: 'SET_HAS_MORE', payload: true })
 					imageListingDispatch({ type: 'ADD_MORE_IMAGES', payload: newPosts.results })
 				}
 			}
@@ -55,12 +63,15 @@ const ImageListing = ({ data }) => {
 			imageListingDispatch({ type: 'SET_LOADING', payload: false })
 		}
 	}
+	console.log(images)
 	return (
 		<>
 			<div className="flex justify-center">
 				<Navbar
 					isGridView={isGridView}
-					searchImages={(e) => searchImages(e, selectedOption, imageListingDispatch)}
+					searchImages={(e) =>
+						searchImages(e, selectedOption, imageListingDispatch, getMoreImages)
+					}
 					selectedOption={selectedOption}
 					setSelectedOption={(value) =>
 						imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: value })
