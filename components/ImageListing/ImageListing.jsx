@@ -1,12 +1,13 @@
 import { useEffect, useReducer } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
+import InfiniteScroll from '../InfiniteScroll/InfiniteScroll'
 import ImageCard from '../ImageCard/ImageCard'
 import Loader from '../Loader/Loader'
 import Navbar from '../Navbar/Navbar'
 import NoResults from '../NoResults/NoResults'
 import { getOptions, searchImages } from './utils'
-import { DEFAULT_QUERY, PER_PAGE, defaultOptions, SCROLL_THRESHOLD } from '../../data/constants'
+import { DEFAULT_QUERY, PER_PAGE, defaultOptions, VISIBILITY_THRESHOLD } from '../../data/constants'
 import { imageListingReducer } from './imageListingReducer'
+import axios from 'axios'
 
 const ImageListing = ({ data }) => {
 	const [
@@ -37,14 +38,16 @@ const ImageListing = ({ data }) => {
 		// make an API call to get more images
 		try {
 			imageListingDispatch({ type: 'SET_LOADING', payload: true })
-			const res = await fetch(
+			const response = await axios.get(
 				`https://api.unsplash.com/search/photos?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
 			)
-			const newPosts = await res.json()
-			if (newPosts.total_pages < page) {
-				imageListingDispatch({ type: 'SET_HAS_MORE', payload: false })
-			} else {
-				imageListingDispatch({ type: 'ADD_MORE_IMAGES', payload: newPosts.results })
+			if (response.status === 200) {
+				const newPosts = response.data
+				if (newPosts.total_pages < page) {
+					imageListingDispatch({ type: 'SET_HAS_MORE', payload: false })
+				} else {
+					imageListingDispatch({ type: 'ADD_MORE_IMAGES', payload: newPosts.results })
+				}
 			}
 		} catch (error) {
 			console.log(error.response)
@@ -66,12 +69,13 @@ const ImageListing = ({ data }) => {
 					imageListingDispatch={imageListingDispatch}
 				/>
 			</div>
+
 			<InfiniteScroll
 				dataLength={images.length}
-				next={getMoreImages}
 				hasMore={hasMore}
-				scrollThreshold={SCROLL_THRESHOLD}
+				next={getMoreImages}
 				loader={images.length > 6 && <Loader isGridView={isGridView} numberOfItems={3} />}
+				threshold={VISIBILITY_THRESHOLD}
 			>
 				<div className="flex m-3 justify-center">
 					<div

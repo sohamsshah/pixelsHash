@@ -10,16 +10,17 @@
     "lint:fix": "eslint --ext .js,.jsx --fix && yarn prettify"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "eslint-plugin-babel": "^5.3.1",
     "naughty-words": "^1.2.0",
     "next": "latest",
+    "next-themes": "^0.0.15",
     "postcss-preset-env": "^6.7.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-infinite-scroll-component": "^6.1.0",
     "react-loading-skeleton": "^2.2.0",
     "react-select": "^4.3.1"
   },

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import axios from 'axios'
 import ImageListing from '../components/ImageListing/ImageListing'
 import ScrollToTopButton from '../components/ScrollToTopButton/ScrollToTopButton'
 export default function Home({ imageData }) {
@@ -56,10 +57,12 @@ export default function Home({ imageData }) {
 export const getStaticProps = async () => {
 	let imageData = null
 	try {
-		const data = await fetch(
-			`https://api.unsplash.com/search/photos?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_API_ACCESS_KEY}&query=code&page=1&per_page=20`,
+		const response = await axios.get(
+			`https://api.unsplash.com/search/photos?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_API_ACCESS_KEY}&query=code&page=1&per_page=10`,
 		)
-		imageData = await data.json()
+		if (response.status === 200) {
+			imageData = response.data
+		}
 	} catch (error) {
 		console.log(error.response)
 	}

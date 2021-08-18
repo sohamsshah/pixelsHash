@@ -37,14 +37,18 @@ const Modal = ({ image, closeModal, prevModalImage, nextModalImage }) => {
 						</button>
 					</div>
 					<div className="flex items-center mx-5 lg:mx-0">
-						<div className="lg:m-20 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+						<div className="lg:m-20 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-600 outline-none focus:outline-none">
 							<div className="lg:flex p-6">
 								<div className="flex justify-center">
 									<Image
 										src={image.urls.regular}
 										key={image.user.id}
 										className="lg:w-100 lg:h-100 max-h-64 lg:max-h-full w-full"
-										alt={image.alt_description}
+										alt={
+											image.alt_description
+												? image.alt_description
+												: 'High Quality Image'
+										}
 										width={750}
 										height={562.5}
 									/>
