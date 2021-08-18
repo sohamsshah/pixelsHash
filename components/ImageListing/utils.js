@@ -28,10 +28,10 @@ const saveQueryToHistory = (query, imageListingDispatch) => {
 
 export const searchImages = async (e, selectedOption, imageListingDispatch) => {
 	// if enter is pressed
-	if (e.keyCode === 13) {	
+	if (e.keyCode === 13) {
 		// if enter is pressed
 		if (e.target.value === '') {
-			if(selectedOption !== null){
+			if (selectedOption !== null) {
 				e.target.value = selectedOption.value
 			}
 		}
