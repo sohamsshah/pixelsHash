@@ -13,7 +13,6 @@ const InfiniteScroll = ({ dataLength, hasMore = false, next, loader, threshold =
 	useEffect(() => {
 		;(async function () {
 			if (isBottomVisible && dataLength !== 0) {
-				console.log('inside next images effect')
 				await next()
 			}
 		})()

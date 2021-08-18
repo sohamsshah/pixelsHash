@@ -33,7 +33,6 @@ const ImageListing = ({ data }) => {
 	useEffect(() => {
 		;(async function () {
 			if (isMounted.current) {
-				console.log(query)
 				await getMoreImages()
 			} else {
 				isMounted.current = true
@@ -63,7 +62,6 @@ const ImageListing = ({ data }) => {
 			imageListingDispatch({ type: 'SET_LOADING', payload: false })
 		}
 	}
-	console.log(images)
 	return (
 		<>
 			<div className="flex justify-center">
