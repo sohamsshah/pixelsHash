@@ -18,11 +18,7 @@ const Navbar = ({
 	const { theme } = useTheme()
 	return (
 		<div className="flex flex-col md:flex-row justify-between md:w-3/4 w-full items-center">
-			{theme === 'light' ? (
-				<div>
-					<Image width="150" height="150" src={pixelsHashLogo} alt="PixelsHash Logo " />
-				</div>
-			) : (
+			{theme === 'dark' ? (
 				<div className="shadow-xl">
 					<Image
 						width="150"
@@ -30,6 +26,10 @@ const Navbar = ({
 						src={pixelsHashLogoDark}
 						alt="PixelsHash Logo Dark"
 					/>
+				</div>
+			) : (
+				<div>
+					<Image width="150" height="150" src={pixelsHashLogo} alt="PixelsHash Logo " />
 				</div>
 			)}
 			<div className="flex items-center w-full px-2 lg:w-2/4 justify-around lg:justify-between">
