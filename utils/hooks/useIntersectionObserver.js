@@ -18,7 +18,7 @@ export function useIntersectionObserver(ref, options, forward = true) {
 	useEffect(() => {
 		if (!element) return
 		cleanOb()
-		const ob = (observer.current = new IntersectionObserver(
+		observer.current = new IntersectionObserver(
 			([entry]) => {
 				const isElementIntersecting = entry.isIntersecting
 				if (!forward) {
@@ -29,12 +29,13 @@ export function useIntersectionObserver(ref, options, forward = true) {
 				}
 			},
 			{ ...options },
-		))
-		ob.observe(element)
-		;() => {
+		)
+		const ob = observer.current;
+		ob.observe(element);
+		() => {
 			cleanOb()
 		}
-	}, [element, options])
+	}, [element, options, isIntersecting, forward])
 
 	return isIntersecting
 }
