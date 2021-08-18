@@ -23,8 +23,6 @@
 
 </p>
 
-<!-- <p align="center"><img src="public/assets/pixelsHash.gif" alt="pixelsHash gif" width="550" /></p> -->
-
 <p align="center">
     <a href="https://pixels-hash.vercel.app/" target="blank">pixelsHash</a>
     ·
@@ -59,6 +57,7 @@ There are multiple features implemented on pixelsHash to make high quality pictu
 -   💻 **Fully Responsive**
 -   ⤵️ **Download Pictures with a click**
 -   🙈 **Profanity Filter** (Clean search and content, always)
+-   🌘 **Dark mode**
 
 ## 🛠️ **Spinning Up Development Environment**
 
@@ -114,7 +113,6 @@ You are all set! Open [localhost:3000](http://localhost:3000/) to see the app.
 
 A lot of features are in the pipeline for pixelsHash. Some of them are
 
--   🌘 **Dark mode**
 -   🥁 **Share Images**
 -   👀 **Visual Search**
 -   🎙 **Audio Search**

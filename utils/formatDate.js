@@ -5,3 +5,4 @@ export const formatDate = (date) => {
 	let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
 	return `${da} ${mo} ${ye}`
 }
+
