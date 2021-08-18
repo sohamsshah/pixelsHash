@@ -5,7 +5,7 @@ import { MdiMoonWaningCrescent } from '../../assets/svgs/MoonIcon'
 const DarkModeToggleButton = () => {
 	const { theme, setTheme } = useTheme()
 	return (
-		<>
+		<div>
 			<button
 				aria-label="Toggle Dark Mode"
 				type="button"
@@ -14,7 +14,7 @@ const DarkModeToggleButton = () => {
 			>
 				{theme === 'dark' ? <MdiWeatherSunny /> : <MdiMoonWaningCrescent />}
 			</button>
-		</>
+		</div>
 	)
 }
 

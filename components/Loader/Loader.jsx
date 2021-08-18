@@ -1,18 +1,20 @@
-import Skeleton from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import { useTheme } from 'next-themes'
 
 const Loader = ({ numberOfItems, isGridView }) => {
+	const { theme } = useTheme()
 	return (
 		<>
 			{isGridView ? (
-				<GridViewLoader numberOfItems={numberOfItems} />
+				<GridViewLoader theme={theme} numberOfItems={numberOfItems} />
 			) : (
-				<ListViewLoader numberOfItems={numberOfItems} />
+				<ListViewLoader theme={theme} numberOfItems={numberOfItems} />
 			)}
 		</>
 	)
 }
 
-const GridViewLoader = ({ numberOfItems }) => {
+const GridViewLoader = ({ theme, numberOfItems }) => {
 	return (
 		<div className="flex m-3 justify-center">
 			<div className="flex flex-wrap gap-2 justify-center">
@@ -20,10 +22,20 @@ const GridViewLoader = ({ numberOfItems }) => {
 					<div key={i} className="flex flex-col justify-between card">
 						<div className="w-80 h-80 relative m-3 overflow-hidden">
 							<div className="m-4 w-72 h-60 text-center">
-								<Skeleton className="w-72 h-60" />
+								<SkeletonTheme
+									color={theme === 'dark' && `#121212`}
+									highlightColor={theme === 'dark' && `#4B5563`}
+								>
+									<Skeleton className="w-72 h-60" />
+								</SkeletonTheme>
 							</div>
 							<div className="ml-4 mb-4 w-72 h-6">
-								<Skeleton className="w-64 h-6" />
+								<SkeletonTheme
+									color={theme === 'dark' && `#121212`}
+									highlightColor={theme === 'dark' && `#4B5563`}
+								>
+									<Skeleton className="w-64 h-6" />
+								</SkeletonTheme>
 							</div>
 						</div>
 					</div>
@@ -32,7 +44,7 @@ const GridViewLoader = ({ numberOfItems }) => {
 		</div>
 	)
 }
-const ListViewLoader = ({ numberOfItems }) => {
+const ListViewLoader = ({ theme, numberOfItems }) => {
 	return (
 		<div className="flex m-3 justify-center">
 			<div className="flex flex-wrap gap-2 justify-center flex-col">
