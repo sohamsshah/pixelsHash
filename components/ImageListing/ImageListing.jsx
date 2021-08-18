@@ -7,6 +7,7 @@ import NoResults from '../NoResults/NoResults'
 import { getOptions, searchImages } from './utils'
 import { DEFAULT_QUERY, PER_PAGE, defaultOptions, VISIBILITY_THRESHOLD } from '../../data/constants'
 import { imageListingReducer } from './imageListingReducer'
+import axios from 'axios'
 
 const ImageListing = ({ data }) => {
 	const [
@@ -37,14 +38,16 @@ const ImageListing = ({ data }) => {
 		// make an API call to get more images
 		try {
 			imageListingDispatch({ type: 'SET_LOADING', payload: true })
-			const res = await fetch(
+			const response = await axios.get(
 				`https://api.unsplash.com/search/photos?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_API_ACCESS_KEY}&query=${query}&page=${page}&per_page=${PER_PAGE}`,
 			)
-			const newPosts = await res.json()
-			if (newPosts.total_pages < page) {
-				imageListingDispatch({ type: 'SET_HAS_MORE', payload: false })
-			} else {
-				imageListingDispatch({ type: 'ADD_MORE_IMAGES', payload: newPosts.results })
+			if (response.status === 200) {
+				const newPosts = response.data
+				if (newPosts.total_pages < page) {
+					imageListingDispatch({ type: 'SET_HAS_MORE', payload: false })
+				} else {
+					imageListingDispatch({ type: 'ADD_MORE_IMAGES', payload: newPosts.results })
+				}
 			}
 		} catch (error) {
 			console.log(error.response)
