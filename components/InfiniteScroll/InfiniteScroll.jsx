@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useIntersectionObserver } from './../../utils/hooks/useIntersectionObserver'
-const InfiniteScroll = ({ hasMore = false, next, loader, threshold = 1, children }) => {
+const InfiniteScroll = ({ dataLength, hasMore = false, next, loader, threshold = 1, children }) => {
 	const ref = useRef(null)
 	const isBottomVisible = useIntersectionObserver(
 		ref,
@@ -12,7 +12,7 @@ const InfiniteScroll = ({ hasMore = false, next, loader, threshold = 1, children
 
 	useEffect(() => {
 		;(async function () {
-			if (isBottomVisible) {
+			if (isBottomVisible && dataLength !== 0) {
 				await next()
 			}
 		})()
@@ -21,7 +21,7 @@ const InfiniteScroll = ({ hasMore = false, next, loader, threshold = 1, children
 	return (
 		<div className="App">
 			{children}
-			<div ref={ref}>{hasMore ? loader : ''}</div>
+			{hasMore ? <div ref={ref}>{loader}</div> : ''}
 		</div>
 	)
 }

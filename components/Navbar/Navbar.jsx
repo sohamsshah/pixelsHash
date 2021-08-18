@@ -45,6 +45,12 @@ const Navbar = ({
 					id="input-value"
 					className="w-80 m-3"
 					formatCreateLabel={() => `Search this...`}
+					styles={{
+						singleValue: (base, state) => ({
+							...base,
+							color: state.selectProps.menuIsOpen ? 'transparent' : base.color,
+						}),
+					}}
 					theme={(boxTheme) => {
 						if (theme === 'dark') {
 							return {

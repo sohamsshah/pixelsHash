@@ -1,5 +1,6 @@
 import { defaultOptions, REPLACED_PROFANE_WORD } from '../../data/constants'
 import englishBadWords from 'naughty-words/en.json'
+
 export const getOptions = () => {
 	// get select options from local storage history
 	const history = localStorage.getItem('history')
@@ -25,24 +26,28 @@ const saveQueryToHistory = (query, imageListingDispatch) => {
 	imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: newHistoryItem })
 }
 
-export const searchImages = (e, selectedOption, imageListingDispatch) => {
+export const searchImages = async (e, selectedOption, imageListingDispatch) => {
+	// if enter is pressed
 	if (e.keyCode === 13) {
 		// if enter is pressed
 		if (e.target.value === '') {
-			e.target.value = selectedOption.value
-		}
-		if (isBadWord(e.target.value)) {
-			// Replace search value with REPLACED word and search for that query instead
-			e.target.value = REPLACED_PROFANE_WORD
-			imageListingDispatch({ type: 'SET_QUERY', payload: REPLACED_PROFANE_WORD })
+			if (selectedOption !== null) {
+				e.target.value = selectedOption.value
+			}
 		} else {
-			// search input query
-			imageListingDispatch({ type: 'SET_QUERY', payload: e.target.value })
+			if (isBadWord(e.target.value)) {
+				// Replace search value with REPLACED word and search for that query instead
+				e.target.value = REPLACED_PROFANE_WORD
+				imageListingDispatch({ type: 'SET_QUERY', payload: REPLACED_PROFANE_WORD })
+			} else {
+				// search input query
+				imageListingDispatch({ type: 'SET_QUERY', payload: e.target.value })
+			}
+			// empty images array in state and add to history
+			imageListingDispatch({ type: 'RESET_IMAGES' })
+			saveQueryToHistory(e.target.value, imageListingDispatch)
+			imageListingDispatch({ type: 'SET_HAS_MORE', payload: true })
 		}
-		// empty images array in state and add to history
-		imageListingDispatch({ type: 'RESET_IMAGES' })
-		saveQueryToHistory(e.target.value, imageListingDispatch)
-		imageListingDispatch({ type: 'SET_HAS_MORE', payload: true })
 	}
 }
 
