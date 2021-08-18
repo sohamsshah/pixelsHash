@@ -54,25 +54,50 @@ const ListViewLoader = ({ theme, numberOfItems }) => {
 						className="card md:flex-row flex-col flex md:justify-around items-center"
 					>
 						<div className="w-80 h-56 lg:w-100 lg:h-80">
-							<Skeleton className="w-80 h-56 lg:w-100 lg:h-80" />
+							<SkeletonTheme
+								color={theme === 'dark' && `#121212`}
+								highlightColor={theme === 'dark' && `#4B5563`}
+							>
+								<Skeleton className="w-80 h-56 lg:w-100 lg:h-80" />
+							</SkeletonTheme>
 						</div>
 						<div className="flex flex-col justify-between m-3 w-80">
 							<div>
 								<div className="mb-5">
 									<div>
-										<Skeleton className="h-8" />
+										<SkeletonTheme
+											color={theme === 'dark' && `#121212`}
+											highlightColor={theme === 'dark' && `#4B5563`}
+										>
+											<Skeleton className="h-8" />
+										</SkeletonTheme>
 									</div>
 									<div>
-										<Skeleton className="h-8" />
+										<SkeletonTheme
+											color={theme === 'dark' && `#121212`}
+											highlightColor={theme === 'dark' && `#4B5563`}
+										>
+											<Skeleton className="h-8" />
+										</SkeletonTheme>
 									</div>
 									<div>
-										<Skeleton className="h-8" />
+										<SkeletonTheme
+											color={theme === 'dark' && `#121212`}
+											highlightColor={theme === 'dark' && `#4B5563`}
+										>
+											<Skeleton className="h-8" />
+										</SkeletonTheme>
 									</div>
 								</div>
 							</div>
 							<div>
 								<div className="h-8">
-									<Skeleton className="h-8" />
+									<SkeletonTheme
+										color={theme === 'dark' && `#121212`}
+										highlightColor={theme === 'dark' && `#4B5563`}
+									>
+										<Skeleton className="h-8" />
+									</SkeletonTheme>
 								</div>
 							</div>
 						</div>

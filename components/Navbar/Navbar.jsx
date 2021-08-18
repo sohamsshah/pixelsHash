@@ -19,7 +19,9 @@ const Navbar = ({
 	return (
 		<div className="flex flex-col md:flex-row justify-between md:w-3/4 w-full items-center">
 			{theme === 'light' ? (
-				<Image width="150" height="150" src={pixelsHashLogo} alt="PixelsHash Logo" />
+				<div>
+					<Image width="150" height="150" src={pixelsHashLogo} alt="PixelsHash Logo " />
+				</div>
 			) : (
 				<div className="shadow-xl">
 					<Image
