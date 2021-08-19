@@ -107,11 +107,12 @@ You are all set! Open [localhost:3000](http://localhost:3000/) to see the app.
 
 -   [Next JS](https://nextjs.org/)
 -   [Next Image](https://nextjs.org/docs/api-reference/next/image): for lazy loading images and optimized Images
--   [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component): for smooth infinite scrolling
+-   [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API): for smooth infinite scrolling
 -   [React Loading Skeleton](https://www.npmjs.com/package/react-loading-skeleton): for effective skeleton loading
 -   [Bad Words](https://www.npmjs.com/package/naughty-words): for Profanity Check 🙏
 -   [React Select](https://www.npmjs.com/package/react-select): for interactive search box
 -   [Vercel](http://vercel.com/): for hosting
+-   [Tailwind CSS](https://tailwindcss.com/): for beautiful UI styling
 
 ## **🌈Upcoming Features**
 
