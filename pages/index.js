@@ -41,8 +41,15 @@ export default function Home({ imageData }) {
 				<meta name="theme-color" content="#ffffff"></meta>
 			</Head>
 			<main>
-				{imageData === null || imageData.errors ? (
-					<p className="text-center">Something went wrong.. Please try again later!</p>
+				{imageData === null ? (
+					<div className="flex h-screen justify-center items-center">
+						<div>
+							<h1 className="p-2 text-6xl">Ooops...</h1>
+							<h2 className="p-2 text-4xl">
+								Something went wrong. Try again later :(
+							</h2>
+						</div>
+					</div>
 				) : (
 					<div>
 						<ImageListing data={imageData} />

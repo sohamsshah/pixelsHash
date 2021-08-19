@@ -30,9 +30,9 @@ export function useIntersectionObserver(ref, options, forward = true) {
 			},
 			{ ...options },
 		)
-		const ob = observer.current;
-		ob.observe(element);
-		() => {
+		const ob = observer.current
+		ob.observe(element)
+		;() => {
 			cleanOb()
 		}
 	}, [element, options, isIntersecting, forward])
