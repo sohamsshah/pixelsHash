@@ -11,19 +11,24 @@ export const getOptions = () => {
 }
 
 const saveQueryToHistory = (query, imageListingDispatch) => {
-	// check if history exists, if not save default options to history
-	if (localStorage.getItem('history') === null) {
-		localStorage.setItem('history', JSON.stringify(defaultOptions))
+	// some browsers don't have localStorage API so handle error
+	try {
+		// check if history exists, if not save default options to history
+		if (localStorage.getItem('history') === null) {
+			localStorage.setItem('history', JSON.stringify(defaultOptions))
+		}
+		let userHistory = JSON.parse(localStorage.getItem('history'))
+		const newHistoryItem = { value: query, label: query }
+		// if same history value already exists, remove it
+		userHistory = userHistory.filter((item) => item.value != newHistoryItem.value)
+		// add new history item to the first index of userHistory - stack implementation
+		userHistory.unshift(newHistoryItem)
+		localStorage.setItem('history', JSON.stringify(userHistory))
+		imageListingDispatch({ type: 'SET_OPTIONS', payload: userHistory.slice(0, 5) })
+		imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: newHistoryItem })
+	} catch (err) {
+		console.log(err)
 	}
-	let userHistory = JSON.parse(localStorage.getItem('history'))
-	const newHistoryItem = { value: query, label: query }
-	// if same history value already exists, remove it
-	userHistory = userHistory.filter((item) => item.value != newHistoryItem.value)
-	// add new history item to the first index of userHistory - stack implementation
-	userHistory.unshift(newHistoryItem)
-	localStorage.setItem('history', JSON.stringify(userHistory))
-	imageListingDispatch({ type: 'SET_OPTIONS', payload: userHistory.slice(0, 5) })
-	imageListingDispatch({ type: 'SET_SELECTED_OPTION', payload: newHistoryItem })
 }
 
 export const searchImages = async (e, selectedOption, imageListingDispatch) => {
